@@ -10,24 +10,15 @@ export const metadata: Metadata = {
 const experiences = [
   {
     poste: 'Responsable HSE',
-    entreprise: 'Ville de Maisons-Alfort',
-    periode: 'Mai 2025 - Présent',
-    lieu: 'Maisons-Alfort, Île-de-France',
+    secteur: 'Collectivité territoriale',
   },
   {
     poste: 'Coordinateur Sécurité',
-    entreprise: 'Fnac Darty',
-    periode: 'Oct 2023 - Mai 2025',
-    lieu: 'France',
-    description: 'Hygiène, sécurité, environnement (HSE), Prévention et maîtrise des risques incendie',
+    secteur: 'Grande distribution',
   },
   {
     poste: 'Responsable Maintenance - Santé - Sécurité',
-    entreprise: 'Centre d\'Action Sociale Protestante',
-    periode: 'Jan 2008 - Fév 2023',
-    duree: '15 ans',
-    lieu: 'Région de Paris',
-    description: 'Gestion de 80 établissements',
+    secteur: 'Secteur médico-social (80 établissements)',
   },
 ]
 
@@ -35,26 +26,22 @@ const formations = [
   {
     diplome: 'Cycle Supérieur Incendie',
     ecole: 'CNPP',
-    annee: '2015 - 2017',
     detail: 'Agrément INSSI',
   },
   {
-    diplome: 'Management de la Santé Sécurité au Travail',
+    diplome: 'Management Santé Sécurité au Travail',
     ecole: 'Cegos',
-    annee: '2021',
     detail: 'Certificat Professionnel',
   },
   {
     diplome: 'Cycle Technique Incendie',
     ecole: 'CNPP',
-    annee: '2011',
-    detail: 'Prévention et technique de sécurité',
+    detail: 'Prévention et sécurité',
   },
   {
     diplome: 'SSIAP 3',
     ecole: 'CREFOPS',
-    annee: '2003',
-    detail: 'Chef de service de sécurité incendie',
+    detail: 'Chef de service sécurité incendie',
   },
 ]
 
@@ -111,24 +98,13 @@ export default function APropos() {
             <div className="space-y-6">
               <h3 className="text-xl font-bold text-navy-700 flex items-center gap-2">
                 <Briefcase className="h-5 w-5 text-fire-500" />
-                Parcours professionnel
+                Expériences professionnelles
               </h3>
               <div className="space-y-4">
                 {experiences.map((exp, index) => (
                   <div key={index} className="bg-gray-50 rounded-xl p-5 border-l-4 border-fire-500">
-                    <div className="flex justify-between items-start mb-2">
-                      <h4 className="font-bold text-navy-700">{exp.poste}</h4>
-                      {exp.duree && (
-                        <span className="bg-fire-500 text-white text-xs px-2 py-1 rounded-full">
-                          {exp.duree}
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-fire-500 font-medium">{exp.entreprise}</p>
-                    <p className="text-sm text-gray-500">{exp.periode} • {exp.lieu}</p>
-                    {exp.description && (
-                      <p className="text-sm text-gray-600 mt-2">{exp.description}</p>
-                    )}
+                    <h4 className="font-bold text-navy-700">{exp.poste}</h4>
+                    <p className="text-gray-600 text-sm">{exp.secteur}</p>
                   </div>
                 ))}
               </div>
@@ -153,9 +129,6 @@ export default function APropos() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {formations.map((formation, index) => (
               <div key={index} className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
-                <div className="bg-navy-700 text-white text-sm font-bold px-3 py-1 rounded-full inline-block mb-4">
-                  {formation.annee}
-                </div>
                 <h3 className="font-bold text-navy-700 mb-2">{formation.diplome}</h3>
                 <p className="text-fire-500 font-medium text-sm mb-2">{formation.ecole}</p>
                 <p className="text-gray-600 text-sm">{formation.detail}</p>
