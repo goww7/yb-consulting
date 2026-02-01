@@ -1,235 +1,313 @@
+'use client'
+
 import Link from 'next/link'
-import { Shield, Search, FileCheck, Users, ArrowRight, CheckCircle, Phone } from 'lucide-react'
+import { Shield, Search, FileCheck, ArrowRight, CheckCircle, Phone, Building2, Factory, Briefcase, Flame } from 'lucide-react'
+import { FadeIn, StaggerContainer, StaggerItem } from '@/components/MotionWrapper'
 
 export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-navy-700 via-navy-800 to-navy-900 text-white overflow-hidden">
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }} />
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+      <section className="bg-navy-800 py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 bg-fire-500/20 text-fire-500 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                <Shield className="h-4 w-4" />
-                Expert en sécurité incendie
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                Protégez vos
-                <span className="text-fire-500"> infrastructures</span> contre les risques incendie
-              </h1>
-              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                YB Consulting vous accompagne dans l&apos;analyse de vulnérabilité des risques
-                d&apos;incendie et d&apos;explosion. Expertise reconnue, méthodologie rigoureuse.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/devis" className="btn-primary inline-flex items-center justify-center gap-2">
-                  Demander un devis
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
-                <Link href="/a-propos" className="btn-outline border-white text-white hover:bg-white hover:text-navy-700 inline-flex items-center justify-center gap-2">
-                  En savoir plus
-                </Link>
-              </div>
+              <FadeIn delay={0.1}>
+                <div className="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
+                  <Shield className="h-4 w-4" />
+                  Expert en sécurité incendie depuis 15 ans
+                </div>
+              </FadeIn>
+
+              <FadeIn delay={0.2}>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white">
+                  Protégez vos
+                  <span className="block text-fire-400">
+                    établissements
+                  </span>
+                  des risques incendie
+                </h1>
+              </FadeIn>
+
+              <FadeIn delay={0.3}>
+                <p className="text-xl text-gray-300 mb-10 leading-relaxed">
+                  Audit, prévention et analyse de vulnérabilité. Une expertise terrain
+                  pour sécuriser vos installations ERP, IGH et sites industriels.
+                </p>
+              </FadeIn>
+
+              <FadeIn delay={0.4}>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link
+                    href="/devis"
+                    className="group bg-fire-500 hover:bg-fire-600 text-white font-semibold py-4 px-8 rounded-xl transition-all inline-flex items-center justify-center gap-2"
+                  >
+                    Demander un devis gratuit
+                    <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                  <a
+                    href="tel:0645070708"
+                    className="border-2 border-white/30 text-white hover:bg-white/10 font-semibold py-4 px-8 rounded-xl transition-all inline-flex items-center justify-center gap-2"
+                  >
+                    <Phone className="h-5 w-5" />
+                    06 45 07 07 08
+                  </a>
+                </div>
+              </FadeIn>
             </div>
-            <div className="hidden md:block">
-              <div className="relative">
-                <div className="bg-gradient-to-br from-fire-500 to-fire-600 rounded-2xl p-8 shadow-2xl">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-white/10 backdrop-blur rounded-xl p-4 text-center">
-                      <div className="text-3xl font-bold">15+</div>
-                      <div className="text-sm text-gray-200">Années d&apos;expérience</div>
-                    </div>
-                    <div className="bg-white/10 backdrop-blur rounded-xl p-4 text-center">
-                      <div className="text-3xl font-bold">500+</div>
-                      <div className="text-sm text-gray-200">Audits réalisés</div>
-                    </div>
-                    <div className="bg-white/10 backdrop-blur rounded-xl p-4 text-center">
-                      <div className="text-3xl font-bold">100%</div>
-                      <div className="text-sm text-gray-200">Clients satisfaits</div>
-                    </div>
-                    <div className="bg-white/10 backdrop-blur rounded-xl p-4 text-center">
-                      <div className="text-3xl font-bold">24/7</div>
-                      <div className="text-sm text-gray-200">Support disponible</div>
-                    </div>
-                  </div>
+
+            {/* Stats cards */}
+            <FadeIn delay={0.3} className="hidden lg:block">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-white/10 rounded-xl p-6 text-center">
+                  <div className="text-4xl font-bold text-white mb-1">500+</div>
+                  <div className="text-gray-300 text-sm">Audits réalisés</div>
+                </div>
+                <div className="bg-white/10 rounded-xl p-6 text-center">
+                  <div className="text-4xl font-bold text-white mb-1">15</div>
+                  <div className="text-gray-300 text-sm">Ans d&apos;expérience</div>
+                </div>
+                <div className="bg-white/10 rounded-xl p-6 text-center">
+                  <div className="text-4xl font-bold text-white mb-1">100%</div>
+                  <div className="text-gray-300 text-sm">Clients satisfaits</div>
+                </div>
+                <div className="bg-fire-500 rounded-xl p-6 text-center">
+                  <Flame className="h-8 w-8 text-white mx-auto mb-2" />
+                  <div className="text-white text-sm font-medium">Expert INSSI</div>
                 </div>
               </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Clients types - Bande défilante */}
+      <section className="py-8 bg-navy-800 border-y border-navy-700">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 text-gray-400">
+            <div className="flex items-center gap-2">
+              <Building2 className="h-5 w-5" />
+              <span className="font-medium">ERP</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Factory className="h-5 w-5" />
+              <span className="font-medium">Sites industriels</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Building2 className="h-5 w-5" />
+              <span className="font-medium">IGH</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Briefcase className="h-5 w-5" />
+              <span className="font-medium">Bureaux</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Factory className="h-5 w-5" />
+              <span className="font-medium">ICPE</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="section-title">Nos Services</h2>
-            <p className="section-subtitle mx-auto">
-              Des solutions complètes pour la prévention et l&apos;analyse des risques incendie
+          <FadeIn className="max-w-3xl mx-auto text-center mb-16">
+            <span className="text-fire-500 font-semibold text-sm uppercase tracking-wider">
+              Nos Services
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-navy-700 mt-3 mb-6">
+              Une expertise complète en sécurité incendie
+            </h2>
+            <p className="text-gray-600 text-lg">
+              De la prévention à l&apos;analyse de vulnérabilité, nous vous accompagnons
+              à chaque étape pour garantir la sécurité de vos établissements.
             </p>
-          </div>
+          </FadeIn>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* PREVARIE Card */}
-            <div className="card group hover:border-fire-500 border-2 border-transparent">
-              <div className="flex items-start gap-4">
-                <div className="bg-fire-500/10 p-4 rounded-xl group-hover:bg-fire-500 transition-colors">
+          <StaggerContainer className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* PREVARIE */}
+            <StaggerItem>
+              <Link href="/services/prevarie" className="group block bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all border border-gray-100 hover:border-fire-200 h-full">
+                <div className="bg-fire-50 p-4 rounded-xl w-fit mb-6 group-hover:bg-fire-500 transition-colors">
                   <Search className="h-8 w-8 text-fire-500 group-hover:text-white transition-colors" />
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-navy-700 mb-2">PREVARIE</h3>
-                  <p className="text-fire-500 font-medium mb-4">
-                    Prévention et Analyse des Risques d&apos;Incendies et d&apos;Explosions
-                  </p>
-                  <p className="text-gray-600 mb-6">
-                    Identification proactive des risques, mise en place de mesures préventives
-                    et élaboration de plans d&apos;action personnalisés pour votre établissement.
-                  </p>
-                  <ul className="space-y-2 mb-6">
-                    <li className="flex items-center gap-2 text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      Audit préventif complet
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      Plan de prévention personnalisé
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      Formation du personnel
-                    </li>
-                  </ul>
-                  <Link
-                    href="/services/prevarie"
-                    className="inline-flex items-center gap-2 text-fire-500 font-semibold hover:gap-4 transition-all"
-                  >
-                    En savoir plus <ArrowRight className="h-5 w-5" />
-                  </Link>
+                <h3 className="text-2xl font-bold text-navy-700 mb-3 group-hover:text-fire-500 transition-colors">
+                  PREVARIE
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  Prévention et Analyse des Risques d&apos;Incendies et d&apos;Explosions
+                </p>
+                <div className="flex items-center text-fire-500 font-medium">
+                  En savoir plus
+                  <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </div>
-              </div>
-            </div>
+              </Link>
+            </StaggerItem>
 
-            {/* INAVRIE Card */}
-            <div className="card group hover:border-fire-500 border-2 border-transparent">
-              <div className="flex items-start gap-4">
-                <div className="bg-fire-500/10 p-4 rounded-xl group-hover:bg-fire-500 transition-colors">
+            {/* INAVRIE */}
+            <StaggerItem>
+              <Link href="/services/inavrie" className="group block bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all border border-gray-100 hover:border-fire-200 h-full">
+                <div className="bg-fire-50 p-4 rounded-xl w-fit mb-6 group-hover:bg-fire-500 transition-colors">
                   <FileCheck className="h-8 w-8 text-fire-500 group-hover:text-white transition-colors" />
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-navy-700 mb-2">INAVRIE</h3>
-                  <p className="text-fire-500 font-medium mb-4">
-                    Ingénieur et Analyste de Vulnérabilité des Risques d&apos;Incendie et d&apos;Explosion
-                  </p>
-                  <p className="text-gray-600 mb-6">
-                    Expertise technique approfondie pour évaluer la vulnérabilité de vos
-                    installations face aux risques d&apos;incendie et d&apos;explosion.
-                  </p>
-                  <ul className="space-y-2 mb-6">
-                    <li className="flex items-center gap-2 text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      Analyse de vulnérabilité
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      Rapport technique détaillé
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      Recommandations d&apos;amélioration
-                    </li>
-                  </ul>
-                  <Link
-                    href="/services/inavrie"
-                    className="inline-flex items-center gap-2 text-fire-500 font-semibold hover:gap-4 transition-all"
-                  >
-                    En savoir plus <ArrowRight className="h-5 w-5" />
-                  </Link>
+                <h3 className="text-2xl font-bold text-navy-700 mb-3 group-hover:text-fire-500 transition-colors">
+                  INAVRIE
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  Ingénieur et Analyste de Vulnérabilité des Risques d&apos;Incendie et d&apos;Explosion
+                </p>
+                <div className="flex items-center text-fire-500 font-medium">
+                  En savoir plus
+                  <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </div>
-              </div>
-            </div>
-          </div>
+              </Link>
+            </StaggerItem>
+          </StaggerContainer>
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-20 bg-gray-50">
+      {/* Réglementation - Section moderne */}
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="section-title">Pourquoi nous choisir ?</h2>
-            <p className="section-subtitle mx-auto">
-              Une expertise reconnue au service de votre sécurité
+          <FadeIn className="text-center mb-16">
+            <span className="text-fire-500 font-semibold text-sm uppercase tracking-wider">
+              Réglementation
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-navy-700 mt-3 mb-4">
+              Maîtrisez la réglementation française
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Retrouvez toutes les informations sur les normes et réglementations
+              en matière de sécurité incendie en France.
             </p>
-          </div>
+          </FadeIn>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="bg-fire-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Shield className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-navy-700 mb-3">Expertise certifiée</h3>
-              <p className="text-gray-600">
-                Ingénieur spécialisé en risques incendie avec une formation
-                et une expérience de terrain reconnues.
-              </p>
+          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { name: 'ERP', desc: 'Établissements Recevant du Public', href: '/reglementation/erp', color: 'from-blue-500 to-blue-600' },
+              { name: 'IGH', desc: 'Immeubles de Grande Hauteur', href: '/reglementation/igh', color: 'from-purple-500 to-purple-600' },
+              { name: 'ICPE', desc: 'Installations Classées', href: '/reglementation/icpe', color: 'from-green-500 to-green-600' },
+              { name: 'Code du travail', desc: 'Sécurité au travail', href: '/reglementation/code-travail', color: 'from-orange-500 to-orange-600' },
+            ].map((item) => (
+              <StaggerItem key={item.name}>
+                <Link
+                  href={item.href}
+                  className="group block relative overflow-hidden rounded-2xl bg-gray-50 p-8 hover:shadow-xl transition-all"
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-100 transition-opacity`} />
+                  <div className="relative z-10">
+                    <h3 className="text-xl font-bold text-navy-700 group-hover:text-white transition-colors mb-2">
+                      {item.name}
+                    </h3>
+                    <p className="text-gray-600 group-hover:text-white/80 transition-colors text-sm">
+                      {item.desc}
+                    </p>
+                    <ArrowRight className="h-5 w-5 mt-4 text-fire-500 group-hover:text-white group-hover:translate-x-1 transition-all" />
+                  </div>
+                </Link>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* Pourquoi nous - Stats visuelles */}
+      <section className="py-24 bg-navy-800 text-white relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-fire-500 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-fire-500 rounded-full blur-3xl" />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <FadeIn>
+                <span className="text-fire-400 font-semibold text-sm uppercase tracking-wider">
+                  Notre engagement
+                </span>
+                <h2 className="text-3xl md:text-4xl font-bold mt-3 mb-6">
+                  Une expertise terrain pour votre sécurité
+                </h2>
+                <p className="text-gray-300 text-lg mb-8">
+                  Fort de 15 années d&apos;expérience dans les plus grandes entreprises du secteur,
+                  nous mettons notre expertise au service de votre conformité et de votre sécurité.
+                </p>
+              </FadeIn>
+
+              <StaggerContainer className="space-y-4">
+                {[
+                  'Audit complet de vos installations',
+                  'Rapports détaillés et actionnables',
+                  'Accompagnement personnalisé',
+                  'Veille réglementaire continue',
+                ].map((item) => (
+                  <StaggerItem key={item}>
+                    <div className="flex items-center gap-3">
+                      <div className="bg-fire-500/20 rounded-full p-1">
+                        <CheckCircle className="h-5 w-5 text-fire-400" />
+                      </div>
+                      <span className="text-gray-200">{item}</span>
+                    </div>
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
             </div>
 
-            <div className="text-center">
-              <div className="bg-fire-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="h-8 w-8 text-white" />
+            <FadeIn>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-white/10 rounded-xl p-6 text-center">
+                  <div className="text-4xl font-bold text-white mb-1">500+</div>
+                  <div className="text-gray-300 text-sm">Audits réalisés</div>
+                </div>
+                <div className="bg-white/10 rounded-xl p-6 text-center">
+                  <div className="text-4xl font-bold text-white mb-1">15</div>
+                  <div className="text-gray-300 text-sm">Ans d&apos;expérience</div>
+                </div>
+                <div className="bg-white/10 rounded-xl p-6 text-center">
+                  <div className="text-4xl font-bold text-white mb-1">100%</div>
+                  <div className="text-gray-300 text-sm">Clients satisfaits</div>
+                </div>
+                <div className="bg-white/10 rounded-xl p-6 text-center">
+                  <div className="text-4xl font-bold text-white mb-1">24h</div>
+                  <div className="text-gray-300 text-sm">Réponse garantie</div>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-navy-700 mb-3">Accompagnement personnalisé</h3>
-              <p className="text-gray-600">
-                Chaque projet est unique. Nous adaptons notre approche
-                à vos besoins spécifiques et votre secteur d&apos;activité.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-fire-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <FileCheck className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-navy-700 mb-3">Rapports détaillés</h3>
-              <p className="text-gray-600">
-                Des rapports clairs et actionnables avec des recommandations
-                concrètes pour améliorer votre sécurité.
-              </p>
-            </div>
+            </FadeIn>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-fire-500 to-fire-600 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Prêt à sécuriser vos installations ?
-          </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Contactez-nous dès aujourd&apos;hui pour une évaluation gratuite
-            de vos besoins en matière de sécurité incendie.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/devis"
-              className="bg-white text-fire-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-colors inline-flex items-center justify-center gap-2"
-            >
-              Demander un devis gratuit
-              <ArrowRight className="h-5 w-5" />
-            </Link>
-            <a
-              href="tel:0645070708"
-              className="border-2 border-white text-white hover:bg-white hover:text-fire-600 font-semibold py-3 px-8 rounded-lg transition-colors inline-flex items-center justify-center gap-2"
-            >
-              <Phone className="h-5 w-5" />
-              06 45 07 07 08
-            </a>
+      <section className="py-20 bg-fire-500">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center text-white">
+            <FadeIn>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                Prêt à sécuriser vos installations ?
+              </h2>
+              <p className="text-xl text-white/90 mb-10">
+                Contactez-nous pour une évaluation gratuite de vos besoins
+                en matière de sécurité incendie.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link
+                  href="/devis"
+                  className="group bg-white text-fire-600 hover:bg-gray-100 font-semibold py-4 px-8 rounded-xl transition-colors inline-flex items-center justify-center gap-2 shadow-lg"
+                >
+                  Demander un devis gratuit
+                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <a
+                  href="tel:0645070708"
+                  className="border-2 border-white text-white hover:bg-white hover:text-fire-600 font-semibold py-4 px-8 rounded-xl transition-colors inline-flex items-center justify-center gap-2"
+                >
+                  <Phone className="h-5 w-5" />
+                  06 45 07 07 08
+                </a>
+              </div>
+            </FadeIn>
           </div>
         </div>
       </section>

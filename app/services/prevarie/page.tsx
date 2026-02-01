@@ -1,261 +1,226 @@
-import { Metadata } from 'next'
+'use client'
+
 import Link from 'next/link'
 import { Search, CheckCircle, ArrowRight, Shield, FileText, Users, AlertTriangle } from 'lucide-react'
-
-export const metadata: Metadata = {
-  title: 'PREVARIE - Prévention et Analyse des Risques',
-  description: 'PREVARIE : Prévention et Analyse des Risques d\'Incendies et d\'Explosions. Identification proactive des risques et mise en place de mesures préventives.',
-}
+import { FadeIn, StaggerContainer, StaggerItem } from '@/components/MotionWrapper'
 
 export default function Prevarie() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-navy-700 to-navy-900 text-white py-20">
+      <section className="bg-navy-800 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 bg-fire-500/20 text-fire-500 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                <Search className="h-4 w-4" />
-                Service spécialisé
-              </div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">PREVARIE</h1>
-              <p className="text-2xl text-fire-500 font-semibold mb-6">
-                Prévention et Analyse des Risques d&apos;Incendies et d&apos;Explosions
-              </p>
-              <p className="text-xl text-gray-300 mb-8">
-                Une approche proactive pour identifier et maîtriser les risques
-                avant qu&apos;ils ne deviennent des incidents.
-              </p>
-              <Link href="/devis" className="btn-primary inline-flex items-center gap-2">
-                Demander un devis
-                <ArrowRight className="h-5 w-5" />
-              </Link>
-            </div>
-            <div className="hidden md:block">
-              <div className="bg-white/10 backdrop-blur rounded-2xl p-8">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-white/10 rounded-xl p-4">
-                    <Shield className="h-8 w-8 text-fire-500 mb-2" />
-                    <div className="font-semibold">Prévention</div>
-                    <div className="text-sm text-gray-300">Anticipation des risques</div>
-                  </div>
-                  <div className="bg-white/10 rounded-xl p-4">
-                    <Search className="h-8 w-8 text-fire-500 mb-2" />
-                    <div className="font-semibold">Analyse</div>
-                    <div className="text-sm text-gray-300">Évaluation approfondie</div>
-                  </div>
-                  <div className="bg-white/10 rounded-xl p-4">
-                    <FileText className="h-8 w-8 text-fire-500 mb-2" />
-                    <div className="font-semibold">Plans</div>
-                    <div className="text-sm text-gray-300">Actions concrètes</div>
-                  </div>
-                  <div className="bg-white/10 rounded-xl p-4">
-                    <Users className="h-8 w-8 text-fire-500 mb-2" />
-                    <div className="font-semibold">Formation</div>
-                    <div className="text-sm text-gray-300">Équipes formées</div>
-                  </div>
+              <FadeIn>
+                <div className="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
+                  <Search className="h-4 w-4" />
+                  Service spécialisé
                 </div>
-              </div>
+                <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">PREVARIE</h1>
+                <p className="text-xl text-fire-400 font-semibold mb-6">
+                  Prévention et Analyse des Risques d&apos;Incendies et d&apos;Explosions
+                </p>
+                <p className="text-lg text-gray-300 mb-8">
+                  Une approche proactive pour identifier et maîtriser les risques
+                  avant qu&apos;ils ne deviennent des incidents.
+                </p>
+                <Link
+                  href="/devis"
+                  className="bg-fire-500 hover:bg-fire-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-flex items-center gap-2"
+                >
+                  Demander un devis
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+              </FadeIn>
             </div>
+
+            <FadeIn className="hidden lg:block">
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { icon: Shield, title: 'Prévention', desc: 'Anticipation des risques' },
+                  { icon: Search, title: 'Analyse', desc: 'Évaluation approfondie' },
+                  { icon: FileText, title: 'Plans', desc: 'Actions concrètes' },
+                  { icon: Users, title: 'Formation', desc: 'Équipes formées' },
+                ].map((item) => (
+                  <div key={item.title} className="bg-white/10 rounded-xl p-5">
+                    <item.icon className="h-8 w-8 text-fire-400 mb-3" />
+                    <div className="font-semibold text-white">{item.title}</div>
+                    <div className="text-sm text-gray-400">{item.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
           </div>
         </div>
       </section>
 
       {/* Qu'est-ce que PREVARIE */}
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="section-title">Qu&apos;est-ce que PREVARIE ?</h2>
+          <FadeIn className="max-w-3xl mx-auto text-center mb-16">
+            <span className="text-fire-500 font-semibold text-sm uppercase tracking-wider">
+              Notre méthodologie
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-navy-700 mt-3 mb-6">
+              Qu&apos;est-ce que PREVARIE ?
+            </h2>
             <p className="text-gray-600 text-lg">
               PREVARIE est notre approche méthodologique pour la prévention et l&apos;analyse
               des risques d&apos;incendie et d&apos;explosion. Elle combine diagnostic terrain,
               analyse réglementaire et recommandations opérationnelles.
             </p>
-          </div>
+          </FadeIn>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="card">
-              <div className="bg-fire-500/10 w-14 h-14 rounded-xl flex items-center justify-center mb-6">
-                <Search className="h-7 w-7 text-fire-500" />
-              </div>
-              <h3 className="text-xl font-bold text-navy-700 mb-3">Diagnostic initial</h3>
-              <p className="text-gray-600">
-                Visite sur site, analyse de l&apos;existant, identification des sources
-                de danger et des zones à risque.
-              </p>
+          <StaggerContainer className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Search,
+                title: 'Diagnostic initial',
+                desc: 'Visite sur site, analyse de l\'existant, identification des sources de danger et des zones à risque.',
+              },
+              {
+                icon: AlertTriangle,
+                title: 'Évaluation des risques',
+                desc: 'Classification des risques par niveau de criticité, analyse des scénarios d\'accident potentiels.',
+              },
+              {
+                icon: FileText,
+                title: 'Plan d\'action',
+                desc: 'Recommandations priorisées, planning de mise en œuvre, indicateurs de suivi.',
+              },
+            ].map((item) => (
+              <StaggerItem key={item.title}>
+                <div className="bg-gray-50 rounded-2xl p-8 hover:shadow-xl transition-all group h-full">
+                  <div className="bg-white w-14 h-14 rounded-xl flex items-center justify-center mb-6 shadow-sm group-hover:bg-fire-500 transition-colors">
+                    <item.icon className="h-7 w-7 text-fire-500 group-hover:text-white transition-colors" />
+                  </div>
+                  <h3 className="text-xl font-bold text-navy-700 mb-3">{item.title}</h3>
+                  <p className="text-gray-600">{item.desc}</p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* Avantages */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div>
+              <FadeIn>
+                <span className="text-fire-500 font-semibold text-sm uppercase tracking-wider">
+                  Pourquoi PREVARIE
+                </span>
+                <h2 className="text-3xl md:text-4xl font-bold text-navy-700 mt-3 mb-6">
+                  Une approche préventive complète
+                </h2>
+                <p className="text-gray-600 text-lg mb-8">
+                  La prévention est la clé d&apos;une sécurité incendie efficace. Notre approche
+                  PREVARIE vous permet d&apos;anticiper les risques et de mettre en place les
+                  mesures adaptées avant tout incident.
+                </p>
+
+                <div className="space-y-3">
+                  {[
+                    'Identification exhaustive des risques',
+                    'Conformité réglementaire garantie',
+                    'Plan d\'action priorisé et budgétisé',
+                    'Formation et sensibilisation des équipes',
+                  ].map((item) => (
+                    <div key={item} className="flex items-center gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-500" />
+                      <span className="text-gray-700">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </FadeIn>
             </div>
 
-            <div className="card">
-              <div className="bg-fire-500/10 w-14 h-14 rounded-xl flex items-center justify-center mb-6">
-                <AlertTriangle className="h-7 w-7 text-fire-500" />
+            <FadeIn>
+              <div className="bg-fire-500 rounded-xl p-8 text-white">
+                <div className="text-5xl font-bold mb-2">100%</div>
+                <div className="text-white/80 mb-4">Objectif conformité</div>
+                <p className="text-white/90">
+                  Notre méthodologie vise la conformité totale de vos installations
+                  aux réglementations en vigueur.
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-navy-700 mb-3">Évaluation des risques</h3>
-              <p className="text-gray-600">
-                Classification des risques par niveau de criticité,
-                analyse des scénarios d&apos;accident potentiels.
-              </p>
-            </div>
-
-            <div className="card">
-              <div className="bg-fire-500/10 w-14 h-14 rounded-xl flex items-center justify-center mb-6">
-                <FileText className="h-7 w-7 text-fire-500" />
-              </div>
-              <h3 className="text-xl font-bold text-navy-700 mb-3">Plan d&apos;action</h3>
-              <p className="text-gray-600">
-                Recommandations priorisées, planning de mise en œuvre,
-                indicateurs de suivi.
-              </p>
-            </div>
+            </FadeIn>
           </div>
         </div>
       </section>
 
       {/* Prestations détaillées */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="section-title text-center mb-16">Nos prestations PREVARIE</h2>
+          <FadeIn className="text-center mb-16">
+            <span className="text-fire-500 font-semibold text-sm uppercase tracking-wider">
+              Détails
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-navy-700 mt-3 mb-4">
+              Nos prestations PREVARIE
+            </h2>
+          </FadeIn>
 
-          <div className="space-y-8">
-            <div className="bg-white rounded-xl p-8 shadow-lg">
-              <div className="flex items-start gap-6">
-                <div className="bg-fire-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shrink-0">
-                  1
+          <StaggerContainer className="space-y-8">
+            {[
+              {
+                num: '1',
+                title: 'Audit préventif complet',
+                desc: 'Évaluation exhaustive de votre établissement : moyens de secours, issues de secours, désenfumage, compartimentage, stockages, process...',
+                items: ['Vérification des moyens d\'extinction', 'Analyse du système de détection', 'Contrôle des évacuations', 'Évaluation du compartimentage'],
+              },
+              {
+                num: '2',
+                title: 'Analyse réglementaire',
+                desc: 'Vérification de la conformité aux réglementations en vigueur : Code du travail, règlement de sécurité ERP, réglementation ICPE...',
+                items: ['Conformité Code du travail', 'Réglementation ERP/IGH', 'Exigences ICPE/SEVESO', 'Normes techniques'],
+              },
+              {
+                num: '3',
+                title: 'Plan de prévention personnalisé',
+                desc: 'Élaboration d\'un plan d\'action sur mesure avec priorisation des actions, estimation budgétaire et planning de mise en œuvre.',
+                items: ['Actions priorisées', 'Estimations budgétaires', 'Planning de réalisation', 'Indicateurs de suivi'],
+              },
+              {
+                num: '4',
+                title: 'Formation du personnel',
+                desc: 'Sensibilisation et formation de vos équipes aux risques incendie, aux procédures d\'évacuation et à l\'utilisation des moyens de secours.',
+                items: ['Sensibilisation aux risques', 'Manipulation extincteurs', 'Exercices d\'évacuation', 'Formation équipiers'],
+              },
+            ].map((prestation) => (
+              <StaggerItem key={prestation.num}>
+                <div className="bg-gray-50 rounded-2xl p-8 hover:shadow-xl transition-all">
+                  <div className="flex items-start gap-6">
+                    <div className="bg-gradient-to-br from-fire-500 to-fire-600 text-white w-14 h-14 rounded-2xl flex items-center justify-center font-bold text-xl shrink-0 shadow-lg shadow-fire-500/30">
+                      {prestation.num}
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-navy-700 mb-3">{prestation.title}</h3>
+                      <p className="text-gray-600 mb-6">{prestation.desc}</p>
+                      <div className="grid md:grid-cols-2 gap-3">
+                        {prestation.items.map((item) => (
+                          <div key={item} className="flex items-center gap-2 text-gray-600">
+                            <CheckCircle className="h-5 w-5 text-green-500 shrink-0" />
+                            <span>{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-xl font-bold text-navy-700 mb-3">Audit préventif complet</h3>
-                  <p className="text-gray-600 mb-4">
-                    Évaluation exhaustive de votre établissement : moyens de secours,
-                    issues de secours, désenfumage, compartimentage, stockages, process...
-                  </p>
-                  <ul className="grid md:grid-cols-2 gap-2">
-                    <li className="flex items-center gap-2 text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      Vérification des moyens d&apos;extinction
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      Analyse du système de détection
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      Contrôle des évacuations
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      Évaluation du compartimentage
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-xl p-8 shadow-lg">
-              <div className="flex items-start gap-6">
-                <div className="bg-fire-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shrink-0">
-                  2
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-navy-700 mb-3">Analyse réglementaire</h3>
-                  <p className="text-gray-600 mb-4">
-                    Vérification de la conformité aux réglementations en vigueur :
-                    Code du travail, règlement de sécurité ERP, réglementation ICPE...
-                  </p>
-                  <ul className="grid md:grid-cols-2 gap-2">
-                    <li className="flex items-center gap-2 text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      Conformité Code du travail
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      Réglementation ERP/IGH
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      Exigences ICPE/SEVESO
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      Normes techniques
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-xl p-8 shadow-lg">
-              <div className="flex items-start gap-6">
-                <div className="bg-fire-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shrink-0">
-                  3
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-navy-700 mb-3">Plan de prévention personnalisé</h3>
-                  <p className="text-gray-600 mb-4">
-                    Élaboration d&apos;un plan d&apos;action sur mesure avec priorisation
-                    des actions, estimation budgétaire et planning de mise en œuvre.
-                  </p>
-                  <ul className="grid md:grid-cols-2 gap-2">
-                    <li className="flex items-center gap-2 text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      Actions priorisées
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      Estimations budgétaires
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      Planning de réalisation
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      Indicateurs de suivi
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-xl p-8 shadow-lg">
-              <div className="flex items-start gap-6">
-                <div className="bg-fire-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shrink-0">
-                  4
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-navy-700 mb-3">Formation du personnel</h3>
-                  <p className="text-gray-600 mb-4">
-                    Sensibilisation et formation de vos équipes aux risques incendie,
-                    aux procédures d&apos;évacuation et à l&apos;utilisation des moyens de secours.
-                  </p>
-                  <ul className="grid md:grid-cols-2 gap-2">
-                    <li className="flex items-center gap-2 text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      Sensibilisation aux risques
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      Manipulation extincteurs
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      Exercices d&apos;évacuation
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      Formation équipiers
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-r from-fire-500 to-fire-600 text-white">
+      <section className="py-16 bg-fire-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Anticipez les risques avec PREVARIE
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
