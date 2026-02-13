@@ -22,6 +22,15 @@ const navigation: NavItem[] = [
     ]
   },
   {
+    name: 'DUERP',
+    href: '/duerp',
+    submenu: [
+      { name: 'Plateforme DUERP', href: '/duerp' },
+      { name: 'Essayer la démo', href: '/duerp/demo' },
+      { name: 'Tarifs', href: '/duerp/tarifs' },
+    ]
+  },
+  {
     name: 'Réglementation',
     href: '/reglementation',
     submenu: [
