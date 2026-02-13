@@ -8,9 +8,9 @@ import { FileText, Send, CheckCircle, Loader2, Building, User, Clipboard } from 
 
 const typesPrestation = [
   { value: '', label: 'Sélectionnez un type de prestation' },
-  { value: 'prevarie', label: 'PREVARIE - Prévention et Analyse des Risques' },
-  { value: 'inavrie', label: 'INAVRIE - Analyse de Vulnérabilité' },
-  { value: 'audit-complet', label: 'Audit complet (PREVARIE + INAVRIE)' },
+  { value: 'prevention', label: 'Prévention & Analyse des Risques' },
+  { value: 'audit-vulnerabilite', label: 'Audit de Vulnérabilité' },
+  { value: 'audit-complet', label: 'Audit complet (Prévention + Vulnérabilité)' },
   { value: 'formation', label: 'Formation sécurité incendie' },
   { value: 'accompagnement', label: 'Accompagnement réglementaire' },
   { value: 'autre', label: 'Autre prestation' },

@@ -20,7 +20,7 @@ export function generateAuditPDF(data: RapportAuditFormData): void {
   doc.setTextColor(255, 255, 255)
   doc.setFontSize(24)
   doc.setFont('helvetica', 'bold')
-  doc.text('YB Consulting', 20, 25)
+  doc.text('Prevarie', 20, 25)
 
   doc.setFontSize(12)
   doc.setFont('helvetica', 'normal')
@@ -192,7 +192,7 @@ export function generateAuditPDF(data: RapportAuditFormData): void {
     doc.setFontSize(9)
     doc.setTextColor(128, 128, 128)
     doc.text(
-      `YB Consulting - Audit et Sécurité Incendie | Tél: 06 45 07 07 08 | Page ${i}/${totalPages}`,
+      `Prevarie - Audit et Sécurité Incendie | contact@prevarie.fr |Page ${i}/${totalPages}`,
       pageWidth / 2,
       290,
       { align: 'center' }

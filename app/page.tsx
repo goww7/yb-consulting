@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Shield, Search, FileCheck, ArrowRight, CheckCircle, Phone, Building2, Factory, Briefcase, Flame } from 'lucide-react'
+import { Shield, Search, FileCheck, ArrowRight, CheckCircle, Calendar, Building2, Factory, Briefcase, Flame } from 'lucide-react'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/MotionWrapper'
 
 export default function Home() {
@@ -45,13 +45,13 @@ export default function Home() {
                     Demander un devis gratuit
                     <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
-                  <a
-                    href="tel:0645070708"
+                  <Link
+                    href="/contact#rdv"
                     className="border-2 border-white/30 text-white hover:bg-white/10 font-semibold py-4 px-8 rounded-xl transition-all inline-flex items-center justify-center gap-2"
                   >
-                    <Phone className="h-5 w-5" />
-                    06 45 07 07 08
-                  </a>
+                    <Calendar className="h-5 w-5" />
+                    Réserver un créneau
+                  </Link>
                 </div>
               </FadeIn>
             </div>
@@ -126,17 +126,17 @@ export default function Home() {
           </FadeIn>
 
           <StaggerContainer className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* PREVARIE */}
+            {/* Prévention & Analyse */}
             <StaggerItem>
               <Link href="/services/prevarie" className="group block bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all border border-gray-100 hover:border-fire-200 h-full">
                 <div className="bg-fire-50 p-4 rounded-xl w-fit mb-6 group-hover:bg-fire-500 transition-colors">
                   <Search className="h-8 w-8 text-fire-500 group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="text-2xl font-bold text-navy-700 mb-3 group-hover:text-fire-500 transition-colors">
-                  PREVARIE
+                  Prévention & Analyse
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Prévention et Analyse des Risques d&apos;Incendies et d&apos;Explosions
+                  Identifiez et maîtrisez les risques d&apos;incendie avant qu&apos;ils ne deviennent des incidents. Diagnostic, évaluation et plan d&apos;action concret.
                 </p>
                 <div className="flex items-center text-fire-500 font-medium">
                   En savoir plus
@@ -145,17 +145,17 @@ export default function Home() {
               </Link>
             </StaggerItem>
 
-            {/* INAVRIE */}
+            {/* Audit de Vulnérabilité */}
             <StaggerItem>
               <Link href="/services/inavrie" className="group block bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all border border-gray-100 hover:border-fire-200 h-full">
                 <div className="bg-fire-50 p-4 rounded-xl w-fit mb-6 group-hover:bg-fire-500 transition-colors">
                   <FileCheck className="h-8 w-8 text-fire-500 group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="text-2xl font-bold text-navy-700 mb-3 group-hover:text-fire-500 transition-colors">
-                  INAVRIE
+                  Audit de Vulnérabilité
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Ingénieur et Analyste de Vulnérabilité des Risques d&apos;Incendie et d&apos;Explosion
+                  Évaluez la résistance réelle de vos installations face aux risques majeurs. Analyse technique, quantification et solutions sur mesure.
                 </p>
                 <div className="flex items-center text-fire-500 font-medium">
                   En savoir plus
@@ -288,8 +288,8 @@ export default function Home() {
                 Prêt à sécuriser vos installations ?
               </h2>
               <p className="text-xl text-white/90 mb-10">
-                Contactez-nous pour une évaluation gratuite de vos besoins
-                en matière de sécurité incendie.
+                Réservez un échange gratuit avec notre expert pour évaluer
+                vos besoins en sécurité incendie.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
@@ -299,13 +299,13 @@ export default function Home() {
                   Demander un devis gratuit
                   <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <a
-                  href="tel:0645070708"
+                <Link
+                  href="/contact#rdv"
                   className="border-2 border-white text-white hover:bg-white hover:text-fire-600 font-semibold py-4 px-8 rounded-xl transition-colors inline-flex items-center justify-center gap-2"
                 >
-                  <Phone className="h-5 w-5" />
-                  06 45 07 07 08
-                </a>
+                  <Calendar className="h-5 w-5" />
+                  Prendre rendez-vous
+                </Link>
               </div>
             </FadeIn>
           </div>

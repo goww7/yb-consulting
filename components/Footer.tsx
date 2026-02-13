@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Phone, Mail, MapPin, Linkedin, Flame } from 'lucide-react'
+import { Calendar, Mail, MapPin, Linkedin, Flame } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -12,7 +12,7 @@ export default function Footer() {
               <div className="bg-gradient-to-br from-fire-500 to-fire-600 p-2 rounded-lg">
                 <Flame className="h-6 w-6 text-white" />
               </div>
-              <span className="text-xl font-bold">YB Consulting</span>
+              <span className="text-xl font-bold">Prevarie</span>
             </div>
             <p className="text-gray-400 mb-4 max-w-md">
               Expert en audit et sécurité incendie. Nous accompagnons les entreprises
@@ -45,12 +45,12 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/services/prevarie" className="text-gray-400 hover:text-white transition-colors">
-                  PREVARIE
+                  Prévention & Analyse
                 </Link>
               </li>
               <li>
                 <Link href="/services/inavrie" className="text-gray-400 hover:text-white transition-colors">
-                  INAVRIE
+                  Audit de Vulnérabilité
                 </Link>
               </li>
               <li>
@@ -66,21 +66,20 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <ul className="space-y-3">
               <li className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-fire-500" />
-                <a href="tel:0645070708" className="text-gray-400 hover:text-white transition-colors">
-                  06 45 07 07 08
-                </a>
+                <Calendar className="h-5 w-5 text-fire-500" />
+                <Link href="/contact#rdv" className="text-gray-400 hover:text-white transition-colors">
+                  Prendre rendez-vous
+                </Link>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-fire-500" />
-                <a href="mailto:contact@yb-consulting.fr" className="text-gray-400 hover:text-white transition-colors">
-                  contact@yb-consulting.fr
+                <a href="mailto:contact@prevarie.fr" className="text-gray-400 hover:text-white transition-colors">
+                  contact@prevarie.fr
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-fire-500 mt-1" />
                 <span className="text-gray-400">
-                  Adresse à définir<br />
                   France
                 </span>
               </li>
@@ -91,7 +90,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-navy-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
-            © {new Date().getFullYear()} YB Consulting. Tous droits réservés.
+            © {new Date().getFullYear()} Prevarie. Tous droits réservés.
           </p>
           <div className="flex gap-6 mt-4 md:mt-0">
             <Link href="/mentions-legales" className="text-gray-400 hover:text-white text-sm transition-colors">

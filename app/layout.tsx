@@ -5,17 +5,17 @@ import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: {
-    default: 'YB Consulting - Audit et Sécurité Incendie',
-    template: '%s | YB Consulting'
+    default: 'Prevarie - Audit et Sécurité Incendie',
+    template: '%s | Prevarie'
   },
-  description: 'YB Consulting, expert en audit et sécurité incendie. Analyse de vulnérabilité des risques d\'incendie et d\'explosion. Services PREVARIE et INAVRIE.',
-  keywords: ['sécurité incendie', 'audit incendie', 'prévention incendie', 'risques explosion', 'PREVARIE', 'INAVRIE', 'consultant sécurité'],
-  authors: [{ name: 'YB Consulting' }],
+  description: 'Prevarie, expert en audit et sécurité incendie. Analyse de vulnérabilité des risques d\'incendie et d\'explosion. Prévention, audit et accompagnement sur mesure.',
+  keywords: ['sécurité incendie', 'audit incendie', 'prévention incendie', 'risques explosion', 'Prevarie', 'consultant sécurité', 'analyse vulnérabilité'],
+  authors: [{ name: 'Prevarie' }],
   openGraph: {
-    title: 'YB Consulting - Audit et Sécurité Incendie',
+    title: 'Prevarie - Audit et Sécurité Incendie',
     description: 'Expert en analyse de vulnérabilité des risques d\'incendie et d\'explosion',
-    url: 'https://yb-consulting.fr',
-    siteName: 'YB Consulting',
+    url: 'https://prevarie.fr',
+    siteName: 'Prevarie',
     locale: 'fr_FR',
     type: 'website',
   },
