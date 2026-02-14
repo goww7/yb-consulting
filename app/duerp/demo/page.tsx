@@ -4,26 +4,59 @@ import { useState } from 'react'
 import Link from 'next/link'
 import {
   ClipboardCheck, ArrowRight, ArrowLeft, CheckCircle, AlertTriangle,
-  BarChart3, Shield, Info, Calendar, ChevronDown
+  BarChart3, Shield, Info, Calendar, ChevronDown, Plus, Lightbulb, ListChecks
 } from 'lucide-react'
 
 // --- Reference Data ---
 
+const workUnitSuggestions = [
+  'Administration',
+  'Production',
+  'Logistique / Entrepôt',
+  'Maintenance',
+  'Accueil / Réception',
+  'Atelier',
+  'Chantier',
+  'Laboratoire',
+  'Cuisine / Restauration',
+  'Magasin / Commerce',
+  'Bureau d\'études',
+  'Service informatique',
+  'Nettoyage / Entretien',
+  'Transport / Livraison',
+]
+
 const riskCategories = [
-  { id: 1, name: 'Chutes de plain-pied', example_phenomenon: 'Sol glissant, encombré ou dégradé', example_situation: 'Déplacement sur sol mouillé ou inégal', example_damage: 'Entorse, fracture, traumatisme crânien' },
-  { id: 2, name: 'Chutes de hauteur', example_phenomenon: 'Travail en hauteur sans protection', example_situation: 'Utilisation d\'échelle ou escabeau', example_damage: 'Fractures, traumatismes graves' },
-  { id: 3, name: 'Manutention manuelle', example_phenomenon: 'Port de charges lourdes ou répétitives', example_situation: 'Manipulation quotidienne de colis', example_damage: 'Lombalgie, TMS, hernie discale' },
-  { id: 4, name: 'Risques mécaniques', example_phenomenon: 'Machines avec pièces en mouvement', example_situation: 'Utilisation de machines-outils', example_damage: 'Coupures, écrasement, amputation' },
-  { id: 5, name: 'Risques électriques', example_phenomenon: 'Prises surchargées, câbles endommagés', example_situation: 'Branchement de plusieurs appareils', example_damage: 'Brûlures, électrisation, électrocution' },
-  { id: 6, name: 'Incendie / Explosion', example_phenomenon: 'Stockage de produits inflammables', example_situation: 'Manipulation de produits à risque', example_damage: 'Brûlures, intoxication, décès' },
-  { id: 7, name: 'Risques chimiques', example_phenomenon: 'Utilisation de produits chimiques', example_situation: 'Nettoyage avec produits dangereux', example_damage: 'Irritations, allergies, intoxication' },
-  { id: 8, name: 'Risques biologiques', example_phenomenon: 'Contact avec agents infectieux', example_situation: 'Travail en milieu hospitalier ou insalubre', example_damage: 'Infections, maladies professionnelles' },
-  { id: 9, name: 'Risques psychosociaux (RPS)', example_phenomenon: 'Surcharge de travail, conflits', example_situation: 'Pression hiérarchique, isolement', example_damage: 'Stress, burn-out, dépression' },
-  { id: 10, name: 'Bruit', example_phenomenon: 'Exposition à un bruit élevé (>80 dB)', example_situation: 'Travail à proximité de machines bruyantes', example_damage: 'Fatigue auditive, surdité' },
-  { id: 11, name: 'Travail sur écran', example_phenomenon: 'Posture statique prolongée devant écran', example_situation: 'Travail de bureau quotidien', example_damage: 'TMS, fatigue visuelle, maux de tête' },
-  { id: 12, name: 'Circulation interne', example_phenomenon: 'Croisement piétons/véhicules', example_situation: 'Déplacements dans les locaux ou le parking', example_damage: 'Collision, écrasement' },
-  { id: 13, name: 'Risques routiers', example_phenomenon: 'Déplacements professionnels fréquents', example_situation: 'Trajets domicile-travail, missions', example_damage: 'Accident de la route' },
-  { id: 14, name: 'Travail isolé', example_phenomenon: 'Salarié travaillant seul', example_situation: 'Intervention en dehors des horaires ou en site isolé', example_damage: 'Malaise sans secours, accident non détecté' },
+  { id: 1, name: 'Chutes de plain-pied', example_phenomenon: 'Sol glissant, encombré ou dégradé', example_situation: 'Déplacement sur sol mouillé ou inégal', example_damage: 'Entorse, fracture, traumatisme crânien', example_prevention: 'Revêtement antidérapant, nettoyage régulier, balisage des zones humides', example_actions: 'Installer des bandes antidérapantes dans les zones à risque, former le personnel au rangement' },
+  { id: 2, name: 'Chutes de hauteur', example_phenomenon: 'Travail en hauteur sans protection', example_situation: 'Utilisation d\'échelle ou escabeau', example_damage: 'Fractures, traumatismes graves', example_prevention: 'Garde-corps, harnais, vérification périodique des équipements', example_actions: 'Remplacer les échelles par des plateformes sécurisées, installer des lignes de vie' },
+  { id: 3, name: 'Manutention manuelle', example_phenomenon: 'Port de charges lourdes ou répétitives', example_situation: 'Manipulation quotidienne de colis', example_damage: 'Lombalgie, TMS, hernie discale', example_prevention: 'Formation gestes et postures, aides à la manutention disponibles', example_actions: 'Acquérir des transpalettes électriques, réorganiser le stockage pour limiter le port de charges' },
+  { id: 4, name: 'Risques mécaniques', example_phenomenon: 'Machines avec pièces en mouvement', example_situation: 'Utilisation de machines-outils', example_damage: 'Coupures, écrasement, amputation', example_prevention: 'Protecteurs fixes sur machines, arrêt d\'urgence, consignes affichées', example_actions: 'Mettre en conformité les machines anciennes, renforcer la formation des opérateurs' },
+  { id: 5, name: 'Risques électriques', example_phenomenon: 'Prises surchargées, câbles endommagés', example_situation: 'Branchement de plusieurs appareils', example_damage: 'Brûlures, électrisation, électrocution', example_prevention: 'Vérification annuelle des installations, habilitation électrique du personnel', example_actions: 'Mettre aux normes le tableau électrique, remplacer les câbles défectueux' },
+  { id: 6, name: 'Incendie / Explosion', example_phenomenon: 'Stockage de produits inflammables', example_situation: 'Manipulation de produits à risque', example_damage: 'Brûlures, intoxication, décès', example_prevention: 'Extincteurs vérifiés, exercices d\'évacuation annuels, stockage conforme', example_actions: 'Installer un système de détection incendie, créer une armoire ventilée pour les produits inflammables' },
+  { id: 7, name: 'Risques chimiques', example_phenomenon: 'Utilisation de produits chimiques', example_situation: 'Nettoyage avec produits dangereux', example_damage: 'Irritations, allergies, intoxication', example_prevention: 'Fiches de données de sécurité accessibles, EPI fournis (gants, masques)', example_actions: 'Substituer les produits les plus dangereux par des alternatives moins nocives' },
+  { id: 8, name: 'Risques biologiques', example_phenomenon: 'Contact avec agents infectieux', example_situation: 'Travail en milieu hospitalier ou insalubre', example_damage: 'Infections, maladies professionnelles', example_prevention: 'Protocole d\'hygiène, vaccination, équipements de protection', example_actions: 'Mettre en place un protocole de décontamination, renforcer la traçabilité des expositions' },
+  { id: 9, name: 'Risques psychosociaux (RPS)', example_phenomenon: 'Surcharge de travail, conflits', example_situation: 'Pression hiérarchique, isolement', example_damage: 'Stress, burn-out, dépression', example_prevention: 'Entretiens réguliers, cellule d\'écoute, gestion de la charge de travail', example_actions: 'Former les managers à la détection des signaux faibles, mettre en place un baromètre social' },
+  { id: 10, name: 'Bruit', example_phenomenon: 'Exposition à un bruit élevé (>80 dB)', example_situation: 'Travail à proximité de machines bruyantes', example_damage: 'Fatigue auditive, surdité', example_prevention: 'Bouchons d\'oreilles, casques antibruit, encoffrement des machines', example_actions: 'Réaliser une cartographie du bruit, installer des écrans acoustiques' },
+  { id: 11, name: 'Travail sur écran', example_phenomenon: 'Posture statique prolongée devant écran', example_situation: 'Travail de bureau quotidien', example_damage: 'TMS, fatigue visuelle, maux de tête', example_prevention: 'Écran réglable, siège ergonomique, pauses régulières', example_actions: 'Équiper les postes de supports écran réglables, proposer des séances d\'ostéopathie' },
+  { id: 12, name: 'Circulation interne', example_phenomenon: 'Croisement piétons/véhicules', example_situation: 'Déplacements dans les locaux ou le parking', example_damage: 'Collision, écrasement', example_prevention: 'Marquage au sol, séparation des flux, miroirs aux angles morts', example_actions: 'Créer un plan de circulation interne, installer des ralentisseurs et une signalétique' },
+  { id: 13, name: 'Risques routiers', example_phenomenon: 'Déplacements professionnels fréquents', example_situation: 'Trajets domicile-travail, missions', example_damage: 'Accident de la route', example_prevention: 'Véhicules entretenus, formation éco-conduite, politique de déplacement', example_actions: 'Équiper les véhicules de service d\'aides à la conduite, limiter les déplacements non essentiels' },
+  { id: 14, name: 'Travail isolé', example_phenomenon: 'Salarié travaillant seul', example_situation: 'Intervention en dehors des horaires ou en site isolé', example_damage: 'Malaise sans secours, accident non détecté', example_prevention: 'Dispositif d\'alerte PTI-DATI, procédure de vérification régulière', example_actions: 'Équiper chaque travailleur isolé d\'un dispositif PTI, instaurer un système de pointage régulier' },
+  { id: 15, name: 'Vibrations', example_phenomenon: 'Utilisation d\'outils vibrants (marteau-piqueur, meuleuse)', example_situation: 'Manipulation prolongée d\'outils portatifs vibrants', example_damage: 'Syndrome du canal carpien, troubles vasculaires, TMS', example_prevention: 'Outils anti-vibrations, limitation du temps d\'exposition, gants anti-vibrations', example_actions: 'Remplacer les outils les plus vibrants par des modèles amortis, organiser une rotation des tâches' },
+  { id: 16, name: 'Rayonnements', example_phenomenon: 'Exposition aux rayonnements ionisants ou non ionisants', example_situation: 'Travail à proximité de sources radioactives, soudage à l\'arc, UV', example_damage: 'Brûlures cutanées, lésions oculaires, cancers', example_prevention: 'Dosimétrie individuelle, écrans de protection, zonage radiologique', example_actions: 'Mettre en place un suivi dosimétrique renforcé, remplacer les sources par des alternatives non irradiantes' },
+  { id: 17, name: 'Ambiances thermiques', example_phenomenon: 'Exposition à des températures extrêmes (chaud ou froid)', example_situation: 'Travail en chambre froide, en extérieur l\'été, près de fours', example_damage: 'Coup de chaleur, hypothermie, malaise, gelures', example_prevention: 'Vêtements adaptés, pauses en zone tempérée, eau fraîche à disposition', example_actions: 'Installer une climatisation ou un chauffage d\'appoint, aménager les horaires en période de canicule' },
+  { id: 18, name: 'Travaux en hauteur', example_phenomenon: 'Intervention sur toiture, pylône ou structure élevée', example_situation: 'Maintenance d\'équipements en hauteur sans nacelle', example_damage: 'Chute mortelle, polytraumatismes', example_prevention: 'Nacelle élévatrice, filets de sécurité, formation travail en hauteur', example_actions: 'Privilégier les interventions depuis le sol, installer des points d\'ancrage permanents' },
+  { id: 19, name: 'Espaces confinés', example_phenomenon: 'Intervention dans un espace clos (cuve, regard, silo)', example_situation: 'Nettoyage ou maintenance dans une cuve sans ventilation', example_damage: 'Asphyxie, intoxication, explosion', example_prevention: 'Détecteur de gaz, ventilation forcée, autorisation de travail spécifique', example_actions: 'Rédiger des procédures d\'entrée en espace confiné, former le personnel au sauvetage' },
+  { id: 20, name: 'Amiante', example_phenomenon: 'Présence d\'amiante dans les bâtiments ou équipements', example_situation: 'Intervention sur flocage, calorifugeage ou dalles amiantées', example_damage: 'Asbestose, mésothéliome, cancer du poumon', example_prevention: 'Repérage amiante avant travaux, intervention par entreprise certifiée', example_actions: 'Réaliser un diagnostic amiante complet, planifier le désamiantage des zones identifiées' },
+  { id: 21, name: 'Atmosphères explosives (ATEX)', example_phenomenon: 'Présence de gaz, vapeurs ou poussières inflammables', example_situation: 'Stockage de solvants, silos à grains, stations de peinture', example_damage: 'Explosion, brûlures graves, décès', example_prevention: 'Zonage ATEX, matériel anti-étincelles, ventilation, détection de gaz', example_actions: 'Réaliser une étude ATEX, remplacer l\'éclairage par du matériel certifié ATEX' },
+  { id: 22, name: 'Agents CMR (Cancérogènes, Mutagènes, Reprotoxiques)', example_phenomenon: 'Utilisation de substances classées CMR', example_situation: 'Manipulation de peintures, solvants, poussières de bois', example_damage: 'Cancers professionnels, troubles de la fertilité', example_prevention: 'Substitution des produits CMR, captage à la source, suivi médical renforcé', example_actions: 'Remplacer les produits CMR par des alternatives, installer une aspiration localisée aux postes de travail' },
+  { id: 23, name: 'Risques liés aux équipements de travail', example_phenomenon: 'Équipements non conformes ou mal entretenus', example_situation: 'Utilisation d\'un chariot élévateur sans maintenance', example_damage: 'Renversement, écrasement, blessures', example_prevention: 'Vérifications périodiques obligatoires, carnet de maintenance, CACES', example_actions: 'Mettre à jour le registre de vérification, former les utilisateurs aux contrôles avant usage' },
+  { id: 24, name: 'Risques liés aux co-activités', example_phenomenon: 'Intervention simultanée de plusieurs entreprises', example_situation: 'Chantier avec sous-traitants, maintenance pendant l\'exploitation', example_damage: 'Collision d\'engins, chutes d\'objets, exposition croisée', example_prevention: 'Plan de prévention, protocole de sécurité, coordination SPS', example_actions: 'Systématiser les réunions de coordination, mettre à jour les plans de prévention annuellement' },
+  { id: 25, name: 'Risques naturels', example_phenomenon: 'Exposition aux intempéries, inondations, séismes', example_situation: 'Travail en extérieur, site en zone inondable', example_damage: 'Blessures, noyade, effondrement de structures', example_prevention: 'Plan d\'urgence, surveillance météo, aménagement des locaux', example_actions: 'Élaborer un plan de continuité d\'activité, installer des dispositifs d\'alerte météo' },
+  { id: 26, name: 'Risques technologiques', example_phenomenon: 'Proximité d\'un site industriel classé Seveso', example_situation: 'Implantation à proximité d\'une usine chimique ou d\'un dépôt pétrolier', example_damage: 'Explosion, nuage toxique, contamination', example_prevention: 'Plan Particulier d\'Intervention (PPI), exercices d\'évacuation, alerte', example_actions: 'Participer aux exercices PPI, installer un système de confinement des locaux' },
+  { id: 27, name: 'Harcèlement moral et sexuel', example_phenomenon: 'Comportements hostiles, propos déplacés, pressions répétées', example_situation: 'Relations hiérarchiques abusives, remarques à caractère sexuel', example_damage: 'Dépression, anxiété, désinsertion professionnelle', example_prevention: 'Référent harcèlement désigné, procédure de signalement, charte de bonne conduite', example_actions: 'Former l\'ensemble du personnel à la prévention du harcèlement, mettre en place un dispositif d\'alerte anonyme' },
+  { id: 28, name: 'Addictions', example_phenomenon: 'Consommation d\'alcool, drogues ou médicaments psychotropes', example_situation: 'Pot d\'entreprise, prise de médicaments altérant la vigilance, pression sociale', example_damage: 'Accident du travail, troubles du comportement, perte de vigilance', example_prevention: 'Règlement intérieur mis à jour, sensibilisation, éthylotest disponible', example_actions: 'Mettre en place un programme de prévention des addictions, former les managers au repérage' },
+  { id: 29, name: 'Risques liés au travail de nuit ou posté', example_phenomenon: 'Horaires décalés, travail de nuit, rotation de postes', example_situation: 'Travail en 3x8, gardes de nuit, astreintes fréquentes', example_damage: 'Troubles du sommeil, fatigue chronique, risque cardiovasculaire', example_prevention: 'Suivi médical renforcé, aménagement des plannings, salle de repos', example_actions: 'Limiter les postes de nuit consécutifs, aménager des espaces de micro-sieste' },
+  { id: 30, name: 'Risques liés aux déplacements à l\'étranger', example_phenomenon: 'Missions dans des zones à risque sanitaire ou sécuritaire', example_situation: 'Déplacements professionnels en zone endémique ou instable', example_damage: 'Maladies tropicales, agression, enlèvement', example_prevention: 'Vaccinations, assurance rapatriement, briefing sécurité avant départ', example_actions: 'Établir une procédure de suivi des déplacements, fournir un kit santé-sécurité voyage' },
 ]
 
 const gravityLevels = [
@@ -86,6 +119,12 @@ export default function DuerpDemo() {
   const [preventionLevel, setPreventionLevel] = useState(0)
   const [actions, setActions] = useState('')
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false)
+  const [categorySearch, setCategorySearch] = useState('')
+
+  const evaluatedCategoryIds = new Set(evaluations.map(e => e.categoryId))
+  const filteredCategories = riskCategories.filter(cat =>
+    cat.name.toLowerCase().includes(categorySearch.toLowerCase())
+  )
 
   const grossRisk = gravity * frequency
   const residualRisk = preventionLevel > 0 ? Math.round((grossRisk / preventionLevel) * 100) / 100 : 0
@@ -105,6 +144,8 @@ export default function DuerpDemo() {
     setPhenomenon(selectedCategory.example_phenomenon)
     setSituation(selectedCategory.example_situation)
     setDamage(selectedCategory.example_damage)
+    setPreventionText(selectedCategory.example_prevention)
+    setActions(selectedCategory.example_actions)
   }
 
   const canSave = phenomenon && situation && damage && gravity > 0 && frequency > 0 && preventionLevel > 0
@@ -158,16 +199,31 @@ export default function DuerpDemo() {
                 <div className="bg-fire-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">1</div>
                 <h2 className="text-xl font-bold text-navy-700">Nommez votre unité de travail</h2>
               </div>
-              <p className="text-gray-600 mb-6">
-                Une unité de travail regroupe les salariés exposés aux mêmes risques
-                (ex : Administration, Production, Logistique...).
+              <p className="text-gray-600 mb-4">
+                Une unité de travail regroupe les salariés exposés aux mêmes risques.
+                Choisissez parmi les suggestions ou saisissez votre propre nom.
               </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {workUnitSuggestions.map((suggestion) => (
+                  <button
+                    key={suggestion}
+                    onClick={() => setUnitName(suggestion)}
+                    className={`px-3 py-1.5 rounded-lg text-sm border transition-all ${
+                      unitName === suggestion
+                        ? 'border-fire-500 bg-fire-50 text-fire-700 font-medium'
+                        : 'border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50'
+                    }`}
+                  >
+                    {suggestion}
+                  </button>
+                ))}
+              </div>
               <input
                 type="text"
                 value={unitName}
                 onChange={(e) => setUnitName(e.target.value)}
                 className="input-field mb-6"
-                placeholder="Ex : Administration, Production, Logistique..."
+                placeholder="Ou saisissez un nom personnalisé..."
               />
               <button
                 onClick={() => unitName.trim() && setStep('evaluate')}
@@ -348,59 +404,153 @@ export default function DuerpDemo() {
                 Évaluation - {unitName}
               </div>
               <div className="text-gray-300 text-sm">
-                {evaluations.length} risque{evaluations.length > 1 ? 's' : ''} évalué{evaluations.length > 1 ? 's' : ''}
-                {evaluations.length > 0 && (
-                  <span className="ml-2">
-                    (<span className="text-red-400">{highRisks} élevé{highRisks > 1 ? 's' : ''}</span>
-                    {' / '}
-                    <span className="text-orange-400">{medRisks} moyen{medRisks > 1 ? 's' : ''}</span>
-                    {' / '}
-                    <span className="text-green-400">{lowRisks} faible{lowRisks > 1 ? 's' : ''}</span>)
-                  </span>
+                {evaluations.length === 0 ? (
+                  <span>Commencez par ajouter des risques ci-dessous</span>
+                ) : (
+                  <>
+                    {evaluations.length} risque{evaluations.length > 1 ? 's' : ''} évalué{evaluations.length > 1 ? 's' : ''}
+                    <span className="ml-2">
+                      (<span className="text-red-400">{highRisks} élevé{highRisks > 1 ? 's' : ''}</span>
+                      {' / '}
+                      <span className="text-orange-400">{medRisks} moyen{medRisks > 1 ? 's' : ''}</span>
+                      {' / '}
+                      <span className="text-green-400">{lowRisks} faible{lowRisks > 1 ? 's' : ''}</span>)
+                    </span>
+                  </>
                 )}
               </div>
             </div>
-            {evaluations.length > 0 && (
-              <button
-                onClick={() => setStep('results')}
-                className="bg-fire-500 hover:bg-fire-600 text-white font-semibold py-2 px-6 rounded-lg transition-colors inline-flex items-center gap-2 text-sm"
-              >
-                <BarChart3 className="h-4 w-4" />
-                Voir la synthèse
-              </button>
-            )}
+            <div className="flex items-center gap-3">
+              {evaluations.length > 0 && (
+                <button
+                  onClick={() => setStep('results')}
+                  className="bg-fire-500 hover:bg-fire-600 text-white font-semibold py-2 px-6 rounded-lg transition-colors inline-flex items-center gap-2 text-sm"
+                >
+                  <BarChart3 className="h-4 w-4" />
+                  Voir la synthèse ({evaluations.length})
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </section>
 
       <section className="py-8 bg-gray-50 min-h-screen">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* Onboarding guide - shown when no risks added yet */}
+          {evaluations.length === 0 && (
+            <div className="bg-gradient-to-r from-fire-50 to-orange-50 border border-fire-200 rounded-2xl p-6 mb-6">
+              <div className="flex items-start gap-4">
+                <div className="bg-fire-500 text-white w-10 h-10 rounded-full flex items-center justify-center shrink-0">
+                  <Lightbulb className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-navy-700 text-lg mb-2">Comment ça marche ?</h3>
+                  <p className="text-gray-600 mb-4">
+                    Évaluez les risques de votre unité <strong>&quot;{unitName}&quot;</strong> en 3 étapes simples :
+                  </p>
+                  <div className="grid sm:grid-cols-3 gap-4">
+                    <div className="flex items-start gap-3">
+                      <div className="bg-fire-500 text-white w-6 h-6 rounded-full flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">1</div>
+                      <div>
+                        <div className="font-semibold text-navy-700 text-sm">Choisissez un risque</div>
+                        <div className="text-xs text-gray-500">Sélectionnez une catégorie dans la liste et décrivez le danger</div>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="bg-fire-500 text-white w-6 h-6 rounded-full flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">2</div>
+                      <div>
+                        <div className="font-semibold text-navy-700 text-sm">Coter le risque</div>
+                        <div className="text-xs text-gray-500">Évaluez la gravité, la fréquence et le niveau de prévention</div>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="bg-fire-500 text-white w-6 h-6 rounded-full flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">3</div>
+                      <div>
+                        <div className="font-semibold text-navy-700 text-sm">Enregistrez & répétez</div>
+                        <div className="text-xs text-gray-500">Enregistrez puis ajoutez autant de risques que nécessaire</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-fire-200">
+                    <button
+                      onClick={fillExample}
+                      className="bg-fire-500 hover:bg-fire-600 text-white font-semibold py-2 px-5 rounded-lg transition-colors inline-flex items-center gap-2 text-sm"
+                    >
+                      <ListChecks className="h-4 w-4" />
+                      Remplir un exemple pour commencer
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+
+            {/* Section header */}
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <div className="bg-fire-500 text-white w-8 h-8 rounded-full flex items-center justify-center">
+                  <Plus className="h-5 w-5" />
+                </div>
+                <div>
+                  <h2 className="font-bold text-navy-700 text-lg">
+                    {evaluations.length === 0 ? 'Ajoutez votre premier risque' : 'Ajouter un nouveau risque'}
+                  </h2>
+                  <p className="text-gray-500 text-sm">Remplissez le formulaire puis cliquez sur Enregistrer</p>
+                </div>
+              </div>
+            </div>
 
             {/* Category selector */}
             <div className="mb-8">
-              <label className="label-field">Catégorie de risque</label>
+              <label className="label-field">Catégorie de risque ({riskCategories.length} catégories disponibles)</label>
               <div className="relative">
                 <button
-                  onClick={() => setShowCategoryDropdown(!showCategoryDropdown)}
+                  onClick={() => { setShowCategoryDropdown(!showCategoryDropdown); setCategorySearch('') }}
                   className="input-field w-full text-left flex items-center justify-between"
                 >
-                  <span>{selectedCategory.name}</span>
+                  <span className="flex items-center gap-2">
+                    {selectedCategory.name}
+                    {evaluatedCategoryIds.has(selectedCategory.id) && (
+                      <span className="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full">Déjà évalué</span>
+                    )}
+                  </span>
                   <ChevronDown className={`h-5 w-5 text-gray-400 transition-transform ${showCategoryDropdown ? 'rotate-180' : ''}`} />
                 </button>
                 {showCategoryDropdown && (
-                  <div className="absolute z-20 top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-xl shadow-lg max-h-64 overflow-y-auto">
-                    {riskCategories.map((cat) => (
-                      <button
-                        key={cat.id}
-                        onClick={() => { setSelectedCategory(cat); setShowCategoryDropdown(false); resetForm() }}
-                        className={`w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors text-sm ${
-                          selectedCategory.id === cat.id ? 'bg-fire-50 text-fire-600 font-medium' : 'text-gray-700'
-                        }`}
-                      >
-                        {cat.name}
-                      </button>
-                    ))}
+                  <div className="absolute z-20 top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-xl shadow-lg">
+                    <div className="p-2 border-b border-gray-100">
+                      <input
+                        type="text"
+                        value={categorySearch}
+                        onChange={(e) => setCategorySearch(e.target.value)}
+                        className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-500 focus:border-transparent"
+                        placeholder="Rechercher une catégorie..."
+                        autoFocus
+                      />
+                    </div>
+                    <div className="max-h-64 overflow-y-auto">
+                      {filteredCategories.map((cat) => (
+                        <button
+                          key={cat.id}
+                          onClick={() => { setSelectedCategory(cat); setShowCategoryDropdown(false); setCategorySearch(''); resetForm() }}
+                          className={`w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors text-sm flex items-center justify-between ${
+                            selectedCategory.id === cat.id ? 'bg-fire-50 text-fire-600 font-medium' : 'text-gray-700'
+                          }`}
+                        >
+                          <span>{cat.name}</span>
+                          {evaluatedCategoryIds.has(cat.id) && (
+                            <CheckCircle className="h-4 w-4 text-green-500 shrink-0" />
+                          )}
+                        </button>
+                      ))}
+                      {filteredCategories.length === 0 && (
+                        <div className="px-4 py-3 text-sm text-gray-500 text-center">Aucune catégorie trouvée</div>
+                      )}
+                    </div>
                   </div>
                 )}
               </div>

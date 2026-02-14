@@ -200,7 +200,7 @@ export default function DuerpTarifs() {
 
           <StaggerContainer className="grid md:grid-cols-4 gap-8">
             {[
-              { icon: Zap, title: '27 catégories de risques', desc: 'Toutes les familles de risques réglementaires' },
+              { icon: Zap, title: '30 catégories de risques', desc: 'Toutes les familles de risques réglementaires' },
               { icon: Shield, title: 'Calcul automatique', desc: 'Risque brut et résiduel en temps réel' },
               { icon: Building2, title: 'Rapport PDF conforme', desc: 'Prêt pour l\'inspection du travail' },
               { icon: Calendar, title: 'Mises à jour incluses', desc: 'Accès aux nouvelles fonctionnalités' },

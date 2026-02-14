@@ -16,7 +16,8 @@ const riskCategories = [
   'Risques routiers', 'Travaux en hauteur', 'Espaces confinés',
   'Amiante', 'Atmosphères explosives (ATEX)', 'Agents CMR',
   'Risques liés aux équipements', 'Risques liés aux co-activités',
-  'Risques naturels', 'Risques technologiques', 'Harcèlement',
+  'Risques naturels', 'Risques technologiques', 'Harcèlement moral et sexuel',
+  'Addictions', 'Travail de nuit ou posté', 'Déplacements à l\'étranger',
 ]
 
 export default function DuerpLanding() {
@@ -49,7 +50,7 @@ export default function DuerpLanding() {
               <FadeIn delay={0.3}>
                 <p className="text-xl text-gray-300 mb-8 leading-relaxed">
                   Évaluez les risques professionnels de votre entreprise en quelques heures.
-                  27 catégories de risques, calcul automatique, plan d&apos;action intégré
+                  30 catégories de risques, calcul automatique, plan d&apos;action intégré
                   et rapport PDF conforme à la réglementation.
                 </p>
               </FadeIn>
@@ -235,7 +236,7 @@ export default function DuerpLanding() {
                 num: '2',
                 icon: ClipboardCheck,
                 title: 'Évaluez',
-                desc: 'Pour chaque unité, évaluez les 27 catégories de risques avec notre formulaire guidé.',
+                desc: 'Pour chaque unité, évaluez les 30 catégories de risques avec notre formulaire guidé.',
               },
               {
                 num: '3',
@@ -359,7 +360,7 @@ export default function DuerpLanding() {
               Couverture complète
             </span>
             <h2 className="text-3xl md:text-4xl font-bold mt-3 mb-4">
-              27 catégories de risques couvertes
+              30 catégories de risques couvertes
             </h2>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto">
               Toutes les familles de risques professionnels reconnues par la réglementation française.
