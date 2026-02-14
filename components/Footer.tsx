@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Calendar, Mail, MapPin, Linkedin, Flame } from 'lucide-react'
+import { Mail, MapPin, Flame, ArrowRight } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -15,18 +15,10 @@ export default function Footer() {
               <span className="text-xl font-bold">Prevarie</span>
             </div>
             <p className="text-gray-400 mb-4 max-w-md">
-              Expert en audit et sécurité incendie. Nous accompagnons les entreprises
-              dans l&apos;analyse de vulnérabilité des risques d&apos;incendie et d&apos;explosion.
+              Expert en audit et sécurité incendie depuis plus de 20 ans.
+              Nous accompagnons les entreprises dans la prévention des risques
+              d&apos;incendie et d&apos;explosion.
             </p>
-            <div className="flex space-x-4">
-              <a
-                href="#"
-                className="bg-navy-700 p-2 rounded-lg hover:bg-fire-500 transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-            </div>
           </div>
 
           {/* Navigation */}
@@ -39,18 +31,23 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/services" className="text-gray-400 hover:text-white transition-colors">
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link href="/boutique" className="text-gray-400 hover:text-white transition-colors">
+                  Boutique
+                </Link>
+              </li>
+              <li>
+                <Link href="/reglementation" className="text-gray-400 hover:text-white transition-colors">
+                  Réglementation
+                </Link>
+              </li>
+              <li>
                 <Link href="/a-propos" className="text-gray-400 hover:text-white transition-colors">
                   À propos
-                </Link>
-              </li>
-              <li>
-                <Link href="/services/prevarie" className="text-gray-400 hover:text-white transition-colors">
-                  Prévention & Analyse
-                </Link>
-              </li>
-              <li>
-                <Link href="/services/inavrie" className="text-gray-400 hover:text-white transition-colors">
-                  Audit de Vulnérabilité
                 </Link>
               </li>
               <li>
@@ -66,9 +63,9 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <ul className="space-y-3">
               <li className="flex items-center gap-3">
-                <Calendar className="h-5 w-5 text-fire-500" />
-                <Link href="/contact#rdv" className="text-gray-400 hover:text-white transition-colors">
-                  Prendre rendez-vous
+                <ArrowRight className="h-5 w-5 text-fire-500" />
+                <Link href="/contact" className="text-gray-400 hover:text-white transition-colors">
+                  Demander un devis
                 </Link>
               </li>
               <li className="flex items-center gap-3">

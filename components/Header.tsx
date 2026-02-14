@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Menu, X, Calendar, Flame, ChevronDown } from 'lucide-react'
+import { Menu, X, Flame, ChevronDown, ArrowRight } from 'lucide-react'
 
 type NavItem = {
   name: string
@@ -12,24 +12,8 @@ type NavItem = {
 
 const navigation: NavItem[] = [
   { name: 'Accueil', href: '/' },
-  { name: 'À propos', href: '/a-propos' },
-  {
-    name: 'Services',
-    href: '#',
-    submenu: [
-      { name: 'Prévention & Analyse', href: '/services/prevarie' },
-      { name: 'Audit de Vulnérabilité', href: '/services/inavrie' },
-    ]
-  },
-  {
-    name: 'DUERP',
-    href: '/duerp',
-    submenu: [
-      { name: 'Plateforme DUERP', href: '/duerp' },
-      { name: 'Essayer la démo', href: '/duerp/demo' },
-      { name: 'Tarifs', href: '/duerp/tarifs' },
-    ]
-  },
+  { name: 'Services', href: '/services' },
+  { name: 'Boutique', href: '/boutique' },
   {
     name: 'Réglementation',
     href: '/reglementation',
@@ -40,7 +24,7 @@ const navigation: NavItem[] = [
       { name: 'Code du travail', href: '/reglementation/code-travail' },
     ]
   },
-  { name: 'Boutique', href: '/boutique' },
+  { name: 'À propos', href: '/a-propos' },
   { name: 'Contact', href: '/contact' },
 ]
 
@@ -94,7 +78,6 @@ export default function Header() {
                   </Link>
                   {openSubmenu === item.name && (
                     <>
-                      {/* Bridge element to prevent gap */}
                       <div className="absolute top-full left-0 h-2 w-full" />
                       <div className="absolute top-full left-0 pt-2 w-52 z-50">
                         <div className="bg-white rounded-lg shadow-lg py-2 border">
@@ -123,13 +106,12 @@ export default function Header() {
               )
             ))}
 
-            {/* Calendly CTA */}
             <Link
-              href="/contact#rdv"
+              href="/contact"
               className="flex items-center gap-2 btn-primary"
             >
-              <Calendar className="h-4 w-4" />
-              <span>Prendre rendez-vous</span>
+              <span>Demander un devis</span>
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
 
@@ -162,15 +144,13 @@ export default function Header() {
                   </button>
                   {openSubmenu === item.name && (
                     <div className="bg-gray-50">
-                      {item.href !== '#' && (
-                        <Link
-                          href={item.href}
-                          className="block py-2 px-8 text-fire-500 font-medium"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          Voir tout
-                        </Link>
-                      )}
+                      <Link
+                        href={item.href}
+                        className="block py-2 px-8 text-fire-500 font-medium"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Voir tout
+                      </Link>
                       {item.submenu.map((subitem) => (
                         <Link
                           key={subitem.name}
@@ -197,11 +177,11 @@ export default function Header() {
             ))}
             <div className="px-4 pt-4">
               <Link
-                href="/contact#rdv"
+                href="/contact"
                 className="flex items-center justify-center gap-2 btn-primary w-full"
               >
-                <Calendar className="h-4 w-4" />
-                <span>Prendre rendez-vous</span>
+                <span>Demander un devis</span>
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>

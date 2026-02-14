@@ -35,26 +35,3 @@ export const devisSchema = z.object({
 })
 
 export type DevisFormData = z.infer<typeof devisSchema>
-
-export const rapportAuditSchema = z.object({
-  // Informations client
-  nomClient: z.string().min(2, 'Le nom du client est requis'),
-  adresseClient: z.string().min(5, 'L\'adresse est requise'),
-  dateAudit: z.string().min(1, 'La date de l\'audit est requise'),
-
-  // Site audité
-  nomSite: z.string().min(2, 'Le nom du site est requis'),
-  typeSite: z.string().min(1, 'Le type de site est requis'),
-  surface: z.string().optional(),
-
-  // Résultats
-  niveauRisqueGlobal: z.enum(['faible', 'moyen', 'eleve', 'critique']),
-  pointsForts: z.string().min(10, 'Décrivez les points forts'),
-  pointsAmeliorer: z.string().min(10, 'Décrivez les points à améliorer'),
-  recommandations: z.string().min(10, 'Ajoutez vos recommandations'),
-
-  // Conclusion
-  conclusion: z.string().min(10, 'Ajoutez une conclusion'),
-})
-
-export type RapportAuditFormData = z.infer<typeof rapportAuditSchema>

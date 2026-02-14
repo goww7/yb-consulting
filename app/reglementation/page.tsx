@@ -194,7 +194,7 @@ export default function Reglementation() {
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="/devis"
+                href="/contact"
                 className="bg-white text-fire-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-colors inline-flex items-center justify-center gap-2"
               >
                 Demander un devis

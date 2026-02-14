@@ -2,8 +2,9 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { ShoppingCart, FileText, BookOpen, Video, Users, Download, CheckCircle, Star, Filter, ArrowRight, ClipboardCheck, Shield } from 'lucide-react'
+import { ShoppingCart, FileText, BookOpen, Video, Users, Download, CheckCircle, Star, Filter, Info } from 'lucide-react'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/MotionWrapper'
+import CTASection from '@/components/CTASection'
 
 type Product = {
   id: string
@@ -17,7 +18,6 @@ type Product = {
 }
 
 const products: Product[] = [
-  // Documents
   {
     id: 'reg-erp-guide',
     name: 'Guide complet réglementation ERP',
@@ -74,7 +74,6 @@ const products: Product[] = [
     popular: true,
     features: ['Word modifiable', 'Notices explicatives', 'Exemples remplis', 'Pièces à joindre'],
   },
-  // Formations
   {
     id: 'formation-erp-base',
     name: 'Formation ERP - Les fondamentaux',
@@ -103,7 +102,6 @@ const products: Product[] = [
     type: 'formation',
     features: ['1h30 de vidéo', 'Mise en situation', 'Attestation', 'Accès 6 mois'],
   },
-  // Services
   {
     id: 'audit-erp',
     name: 'Audit de conformité ERP',
@@ -175,36 +173,15 @@ export default function Boutique() {
         </div>
       </section>
 
-      {/* DUERP Banner */}
-      <section className="py-8 bg-white">
+      {/* Payment notice banner */}
+      <section className="py-4 bg-amber-50 border-b border-amber-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-r from-navy-700 to-navy-800 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-6">
-            <div className="bg-fire-500 p-4 rounded-xl shrink-0">
-              <ClipboardCheck className="h-10 w-10 text-white" />
-            </div>
-            <div className="flex-1 text-center md:text-left">
-              <div className="flex items-center gap-2 justify-center md:justify-start mb-1">
-                <h3 className="text-xl font-bold text-white">Plateforme DUERP en ligne</h3>
-                <span className="bg-fire-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">Nouveau</span>
-              </div>
-              <p className="text-gray-300 text-sm">
-                Créez votre Document Unique d&apos;Évaluation des Risques Professionnels en quelques heures.
-                27 catégories de risques, calcul automatique, rapport PDF conforme.
-              </p>
-            </div>
-            <div className="flex items-center gap-4 shrink-0">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-white">299 €</div>
-                <div className="text-gray-400 text-xs">À partir de</div>
-              </div>
-              <Link
-                href="/duerp"
-                className="bg-fire-500 hover:bg-fire-600 text-white font-semibold py-3 px-6 rounded-xl transition-colors inline-flex items-center gap-2"
-              >
-                Découvrir
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
+          <div className="flex items-center gap-3 justify-center text-amber-800">
+            <Info className="h-5 w-5 shrink-0" />
+            <p className="text-sm font-medium">
+              Le paiement en ligne sera bientôt disponible.
+              Pour commander, <Link href="/contact" className="underline font-bold hover:text-amber-900">contactez-nous</Link>.
+            </p>
           </div>
         </div>
       </section>
@@ -216,7 +193,6 @@ export default function Boutique() {
           <FadeIn>
             <div className="bg-white rounded-2xl shadow-sm p-6 mb-10 border border-gray-100">
               <div className="flex flex-col lg:flex-row lg:items-center gap-6">
-                {/* Catégories */}
                 <div className="flex-1">
                   <label className="text-sm font-semibold text-navy-700 mb-3 block">Catégorie</label>
                   <div className="flex flex-wrap gap-2">
@@ -235,8 +211,6 @@ export default function Boutique() {
                     ))}
                   </div>
                 </div>
-
-                {/* Types */}
                 <div className="flex-1">
                   <label className="text-sm font-semibold text-navy-700 mb-3 block">Type</label>
                   <div className="flex flex-wrap gap-2">
@@ -260,19 +234,16 @@ export default function Boutique() {
             </div>
           </FadeIn>
 
-          {/* Résultats */}
           <FadeIn>
             <p className="text-gray-600 mb-8 font-medium">
               {filteredProducts.length} produit{filteredProducts.length > 1 ? 's' : ''} trouvé{filteredProducts.length > 1 ? 's' : ''}
             </p>
           </FadeIn>
 
-          {/* Grille produits */}
           <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProducts.map((product) => (
               <StaggerItem key={product.id}>
                 <div className="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-xl transition-all group border border-gray-100">
-                  {/* Badge type */}
                   <div className="relative">
                     <div className={`h-1.5 ${
                       product.type === 'document' ? 'bg-gradient-to-r from-blue-400 to-blue-600' :
@@ -287,7 +258,6 @@ export default function Boutique() {
                   </div>
 
                   <div className="p-6">
-                    {/* Type badge */}
                     <div className="flex items-center gap-2 mb-4">
                       <span className={`text-xs font-semibold px-3 py-1 rounded-full ${
                         product.type === 'document' ? 'bg-blue-50 text-blue-600' :
@@ -302,7 +272,6 @@ export default function Boutique() {
                     <h3 className="text-lg font-bold text-navy-700 mb-2 group-hover:text-fire-500 transition-colors">{product.name}</h3>
                     <p className="text-gray-600 text-sm mb-5 line-clamp-2">{product.description}</p>
 
-                    {/* Features */}
                     <ul className="space-y-2 mb-6">
                       {product.features.slice(0, 3).map((feature) => (
                         <li key={feature} className="flex items-center gap-2 text-sm text-gray-600">
@@ -312,30 +281,23 @@ export default function Boutique() {
                       ))}
                     </ul>
 
-                    {/* Prix et CTA */}
                     <div className="flex items-center justify-between pt-5 border-t border-gray-100">
                       <div>
                         <span className="text-2xl font-bold text-navy-700">{product.price}€</span>
                         {product.type === 'service' && <span className="text-sm text-gray-500 ml-1">HT</span>}
                       </div>
-                      <button className="bg-gradient-to-r from-fire-500 to-fire-600 hover:from-fire-600 hover:to-fire-700 text-white font-semibold py-2.5 px-5 rounded-xl transition-all text-sm flex items-center gap-2 shadow-lg shadow-fire-500/20">
+                      <Link
+                        href="/contact"
+                        className="bg-gradient-to-r from-fire-500 to-fire-600 hover:from-fire-600 hover:to-fire-700 text-white font-semibold py-2.5 px-5 rounded-xl transition-all text-sm flex items-center gap-2 shadow-lg shadow-fire-500/20"
+                      >
                         {product.type === 'document' ? (
-                          <>
-                            <Download className="h-4 w-4" />
-                            Acheter
-                          </>
+                          <><Download className="h-4 w-4" />Commander</>
                         ) : product.type === 'formation' ? (
-                          <>
-                            <BookOpen className="h-4 w-4" />
-                            S&apos;inscrire
-                          </>
+                          <><BookOpen className="h-4 w-4" />S&apos;inscrire</>
                         ) : (
-                          <>
-                            <Users className="h-4 w-4" />
-                            Demander
-                          </>
+                          <><Users className="h-4 w-4" />Demander</>
                         )}
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -360,7 +322,7 @@ export default function Boutique() {
           <StaggerContainer className="grid md:grid-cols-4 gap-8">
             {[
               { icon: CheckCircle, title: 'Conformes', desc: 'Documents conformes à la réglementation en vigueur' },
-              { icon: Download, title: 'Téléchargement immédiat', desc: 'Accès instantané après paiement sécurisé' },
+              { icon: Download, title: 'Téléchargement immédiat', desc: 'Accès instantané après confirmation de commande' },
               { icon: FileText, title: 'Modifiables', desc: 'Formats Word/Excel pour personnalisation' },
               { icon: Users, title: 'Support expert', desc: 'Questions ? Notre équipe vous répond' },
             ].map((item) => (
@@ -378,24 +340,11 @@ export default function Boutique() {
         </div>
       </section>
 
-      {/* CTA personnalisé */}
-      <section className="py-16 bg-fire-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Besoin d&apos;un document sur mesure ?
-          </h2>
-          <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-            Nous pouvons créer des documents personnalisés adaptés à votre établissement.
-          </p>
-          <Link
-            href="/contact"
-            className="bg-white text-fire-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-colors inline-flex items-center gap-2"
-          >
-            Contactez-nous
-            <ArrowRight className="h-5 w-5" />
-          </Link>
-        </div>
-      </section>
+      {/* CTA */}
+      <CTASection
+        title="Besoin d'un document sur mesure ?"
+        description="Nous pouvons créer des documents personnalisés adaptés à votre établissement et vos besoins spécifiques."
+      />
     </>
   )
 }

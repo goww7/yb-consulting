@@ -8,8 +8,8 @@ export const metadata: Metadata = {
     default: 'Prevarie - Audit et Sécurité Incendie',
     template: '%s | Prevarie'
   },
-  description: 'Prevarie, expert en audit et sécurité incendie. Analyse de vulnérabilité des risques d\'incendie et d\'explosion. Prévention, audit et accompagnement sur mesure.',
-  keywords: ['sécurité incendie', 'audit incendie', 'prévention incendie', 'risques explosion', 'Prevarie', 'consultant sécurité', 'analyse vulnérabilité'],
+  description: 'Prevarie, expert en sécurité incendie depuis plus de 20 ans. Prévention, audit de vulnérabilité, DUERP et formation. Accompagnement sur mesure pour entreprises et collectivités.',
+  keywords: ['sécurité incendie', 'audit incendie', 'prévention incendie', 'risques explosion', 'Prevarie', 'DUERP', 'consultant sécurité', 'analyse vulnérabilité', 'formation incendie'],
   authors: [{ name: 'Prevarie' }],
   openGraph: {
     title: 'Prevarie - Audit et Sécurité Incendie',

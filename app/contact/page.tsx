@@ -3,56 +3,90 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { contactSchema, ContactFormData } from '@/lib/validations'
-import { Calendar, Mail, MapPin, Send, CheckCircle, Loader2, Clock, ArrowRight } from 'lucide-react'
+import { contactSchema, ContactFormData, devisSchema, DevisFormData } from '@/lib/validations'
+import { Mail, MapPin, Send, CheckCircle, Loader2, FileText, MessageSquare, Building, User, Clipboard } from 'lucide-react'
 
 const sujets = [
   { value: '', label: 'Sélectionnez un sujet' },
   { value: 'information', label: 'Demande d\'information' },
   { value: 'prevention', label: 'Prévention & Analyse des risques' },
   { value: 'audit', label: 'Audit de Vulnérabilité' },
+  { value: 'duerp', label: 'DUERP - Évaluation des risques' },
   { value: 'formation', label: 'Formation' },
   { value: 'autre', label: 'Autre' },
 ]
 
-const creneaux = [
-  { jour: 'Lundi', horaires: ['9h00', '10h00', '11h00', '14h00', '15h00', '16h00'] },
-  { jour: 'Mardi', horaires: ['9h00', '10h00', '11h00', '14h00', '15h00', '16h00'] },
-  { jour: 'Mercredi', horaires: ['9h00', '10h00', '11h00', '14h00', '15h00', '16h00'] },
-  { jour: 'Jeudi', horaires: ['9h00', '10h00', '11h00', '14h00', '15h00', '16h00'] },
-  { jour: 'Vendredi', horaires: ['9h00', '10h00', '11h00', '14h00', '15h00', '16h00'] },
+const typesPrestation = [
+  { value: '', label: 'Sélectionnez un type de prestation' },
+  { value: 'prevention', label: 'Prévention & Analyse des Risques' },
+  { value: 'audit-vulnerabilite', label: 'Audit de Vulnérabilité' },
+  { value: 'audit-complet', label: 'Audit complet (Prévention + Vulnérabilité)' },
+  { value: 'duerp', label: 'DUERP - Évaluation des risques professionnels' },
+  { value: 'formation', label: 'Formation sécurité incendie' },
+  { value: 'accompagnement', label: 'Accompagnement réglementaire' },
+  { value: 'autre', label: 'Autre prestation' },
 ]
 
+const delais = [
+  { value: '', label: 'Sélectionnez un délai' },
+  { value: 'urgent', label: 'Urgent (< 1 mois)' },
+  { value: 'normal', label: 'Normal (1 à 3 mois)' },
+  { value: 'flexible', label: 'Flexible (> 3 mois)' },
+]
+
+type ActiveTab = 'devis' | 'contact'
+
 export default function Contact() {
+  const [activeTab, setActiveTab] = useState<ActiveTab>('devis')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
-  const [selectedJour, setSelectedJour] = useState<string | null>(null)
-  const [selectedHoraire, setSelectedHoraire] = useState<string | null>(null)
-  const [rdvConfirmed, setRdvConfirmed] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<ContactFormData>({
+  const contactForm = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
   })
 
-  const onSubmit = async (data: ContactFormData) => {
+  const devisForm = useForm<DevisFormData>({
+    resolver: zodResolver(devisSchema),
+  })
+
+  const onSubmitContact = async (data: ContactFormData) => {
     setIsSubmitting(true)
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-    console.log('Contact form data:', data)
-    setIsSubmitting(false)
-    setIsSuccess(true)
-    reset()
-    setTimeout(() => setIsSuccess(false), 5000)
+    setErrorMessage('')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'contact', ...data }),
+      })
+      if (!res.ok) throw new Error()
+      setIsSuccess(true)
+      contactForm.reset()
+      setTimeout(() => setIsSuccess(false), 5000)
+    } catch {
+      setErrorMessage('Une erreur est survenue. Veuillez réessayer ou nous contacter par email.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
-  const handleRdvConfirm = () => {
-    if (selectedJour && selectedHoraire) {
-      setRdvConfirmed(true)
-      setTimeout(() => setRdvConfirmed(false), 5000)
+  const onSubmitDevis = async (data: DevisFormData) => {
+    setIsSubmitting(true)
+    setErrorMessage('')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'devis', ...data }),
+      })
+      if (!res.ok) throw new Error()
+      setIsSuccess(true)
+      devisForm.reset()
+      setTimeout(() => setIsSuccess(false), 5000)
+    } catch {
+      setErrorMessage('Une erreur est survenue. Veuillez réessayer ou nous contacter par email.')
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -62,112 +96,11 @@ export default function Contact() {
       <section className="bg-gradient-to-br from-navy-700 to-navy-900 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Contactez-nous</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">Parlons de votre projet</h1>
             <p className="text-xl text-gray-300">
-              Une question ? Un projet ? Prenez rendez-vous ou envoyez-nous un message.
-              Notre équipe vous répondra dans les meilleurs délais.
+              Demandez un devis personnalisé ou posez-nous une question.
+              Notre expert vous répondra sous 48h.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Prise de rendez-vous */}
-      <section id="rdv" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 bg-fire-500/10 text-fire-500 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                <Calendar className="h-4 w-4" />
-                Rendez-vous en ligne
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-navy-700 mb-4">
-                Réservez un créneau d&apos;échange
-              </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                Choisissez le jour et l&apos;heure qui vous conviennent pour un échange gratuit
-                de 30 minutes avec notre expert en sécurité incendie.
-              </p>
-            </div>
-
-            {rdvConfirmed ? (
-              <div className="bg-green-50 border border-green-200 rounded-2xl p-8 text-center">
-                <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-green-700 mb-2">Rendez-vous confirmé</h3>
-                <p className="text-green-600 text-lg">
-                  Votre rendez-vous du <strong>{selectedJour} à {selectedHoraire}</strong> a été enregistré.
-                  Vous recevrez un email de confirmation avec les détails de connexion.
-                </p>
-              </div>
-            ) : (
-              <div className="bg-gray-50 rounded-2xl p-8">
-                {/* Sélection du jour */}
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold text-navy-700 mb-4 flex items-center gap-2">
-                    <span className="bg-fire-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold">1</span>
-                    Choisissez un jour
-                  </h3>
-                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
-                    {creneaux.map((c) => (
-                      <button
-                        key={c.jour}
-                        onClick={() => { setSelectedJour(c.jour); setSelectedHoraire(null) }}
-                        className={`p-4 rounded-xl text-center font-medium transition-all ${
-                          selectedJour === c.jour
-                            ? 'bg-fire-500 text-white shadow-lg shadow-fire-500/30'
-                            : 'bg-white text-gray-700 hover:bg-fire-50 border border-gray-200'
-                        }`}
-                      >
-                        {c.jour}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Sélection de l'horaire */}
-                {selectedJour && (
-                  <div className="mb-8">
-                    <h3 className="text-lg font-semibold text-navy-700 mb-4 flex items-center gap-2">
-                      <span className="bg-fire-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold">2</span>
-                      Choisissez un horaire
-                    </h3>
-                    <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
-                      {creneaux.find(c => c.jour === selectedJour)?.horaires.map((h) => (
-                        <button
-                          key={h}
-                          onClick={() => setSelectedHoraire(h)}
-                          className={`p-3 rounded-xl text-center font-medium transition-all flex items-center justify-center gap-2 ${
-                            selectedHoraire === h
-                              ? 'bg-navy-700 text-white shadow-lg'
-                              : 'bg-white text-gray-700 hover:bg-navy-50 border border-gray-200'
-                          }`}
-                        >
-                          <Clock className="h-4 w-4" />
-                          {h}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Confirmation */}
-                {selectedJour && selectedHoraire && (
-                  <div className="flex flex-col sm:flex-row items-center justify-between bg-white rounded-xl p-6 border border-gray-200">
-                    <div>
-                      <p className="text-gray-600 text-sm">Votre rendez-vous</p>
-                      <p className="text-navy-700 font-bold text-lg">{selectedJour} à {selectedHoraire} - 30 min</p>
-                      <p className="text-gray-500 text-sm">Échange gratuit - Visioconférence ou téléphone</p>
-                    </div>
-                    <button
-                      onClick={handleRdvConfirm}
-                      className="mt-4 sm:mt-0 bg-fire-500 hover:bg-fire-600 text-white font-semibold py-3 px-8 rounded-xl transition-colors inline-flex items-center gap-2"
-                    >
-                      Confirmer
-                      <ArrowRight className="h-5 w-5" />
-                    </button>
-                  </div>
-                )}
-              </div>
-            )}
           </div>
         </div>
       </section>
@@ -176,23 +109,11 @@ export default function Contact() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-12">
-            {/* Informations de contact */}
+            {/* Sidebar */}
             <div className="md:col-span-1">
               <h2 className="text-2xl font-bold text-navy-700 mb-6">Nos coordonnées</h2>
 
               <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="bg-fire-500/10 p-3 rounded-lg">
-                    <Calendar className="h-6 w-6 text-fire-500" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-navy-700">Rendez-vous</h3>
-                    <a href="#rdv" className="text-fire-500 hover:text-fire-600 font-medium transition-colors">
-                      Réserver un créneau en ligne
-                    </a>
-                  </div>
-                </div>
-
                 <div className="flex items-start gap-4">
                   <div className="bg-fire-500/10 p-3 rounded-lg">
                     <Mail className="h-6 w-6 text-fire-500" />
@@ -211,9 +132,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-navy-700">Localisation</h3>
-                    <p className="text-gray-600">
-                      France
-                    </p>
+                    <p className="text-gray-600">France</p>
                   </div>
                 </div>
               </div>
@@ -235,143 +154,220 @@ export default function Contact() {
                   </li>
                 </ul>
               </div>
+
+              <div className="mt-6 p-6 bg-fire-500 rounded-xl text-white">
+                <h3 className="font-semibold mb-2">Réponse garantie</h3>
+                <p className="text-white/90 text-sm">
+                  Nous nous engageons à répondre à toutes les demandes sous 48h ouvrées.
+                  Pour les demandes urgentes, mentionnez-le dans votre message.
+                </p>
+              </div>
             </div>
 
             {/* Formulaire */}
             <div className="md:col-span-2">
-              <div className="bg-white rounded-xl shadow-lg p-8">
-                <h2 className="text-2xl font-bold text-navy-700 mb-6">Envoyez-nous un message</h2>
-
-                {isSuccess && (
-                  <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500" />
-                    <p className="text-green-700">Votre message a été envoyé avec succès !</p>
-                  </div>
-                )}
-
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="nom" className="label-field">
-                        Nom <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        id="nom"
-                        {...register('nom')}
-                        className={`input-field ${errors.nom ? 'border-red-500' : ''}`}
-                        placeholder="Votre nom"
-                      />
-                      {errors.nom && (
-                        <p className="mt-1 text-sm text-red-500">{errors.nom.message}</p>
-                      )}
-                    </div>
-
-                    <div>
-                      <label htmlFor="prenom" className="label-field">
-                        Prénom <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        id="prenom"
-                        {...register('prenom')}
-                        className={`input-field ${errors.prenom ? 'border-red-500' : ''}`}
-                        placeholder="Votre prénom"
-                      />
-                      {errors.prenom && (
-                        <p className="mt-1 text-sm text-red-500">{errors.prenom.message}</p>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="email" className="label-field">
-                        Email <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        {...register('email')}
-                        className={`input-field ${errors.email ? 'border-red-500' : ''}`}
-                        placeholder="votre@email.fr"
-                      />
-                      {errors.email && (
-                        <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
-                      )}
-                    </div>
-
-                    <div>
-                      <label htmlFor="telephone" className="label-field">
-                        Téléphone
-                      </label>
-                      <input
-                        type="tel"
-                        id="telephone"
-                        {...register('telephone')}
-                        className={`input-field ${errors.telephone ? 'border-red-500' : ''}`}
-                        placeholder="06 00 00 00 00"
-                      />
-                      {errors.telephone && (
-                        <p className="mt-1 text-sm text-red-500">{errors.telephone.message}</p>
-                      )}
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="sujet" className="label-field">
-                      Sujet <span className="text-red-500">*</span>
-                    </label>
-                    <select
-                      id="sujet"
-                      {...register('sujet')}
-                      className={`input-field ${errors.sujet ? 'border-red-500' : ''}`}
-                    >
-                      {sujets.map((sujet) => (
-                        <option key={sujet.value} value={sujet.value}>
-                          {sujet.label}
-                        </option>
-                      ))}
-                    </select>
-                    {errors.sujet && (
-                      <p className="mt-1 text-sm text-red-500">{errors.sujet.message}</p>
-                    )}
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="label-field">
-                      Message <span className="text-red-500">*</span>
-                    </label>
-                    <textarea
-                      id="message"
-                      rows={5}
-                      {...register('message')}
-                      className={`input-field resize-none ${errors.message ? 'border-red-500' : ''}`}
-                      placeholder="Décrivez votre demande..."
-                    />
-                    {errors.message && (
-                      <p className="mt-1 text-sm text-red-500">{errors.message.message}</p>
-                    )}
-                  </div>
-
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                {/* Tabs */}
+                <div className="flex border-b border-gray-200">
                   <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="btn-primary w-full flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    onClick={() => { setActiveTab('devis'); setIsSuccess(false); setErrorMessage('') }}
+                    className={`flex-1 flex items-center justify-center gap-2 py-4 px-6 font-semibold text-sm transition-colors ${
+                      activeTab === 'devis'
+                        ? 'text-fire-500 border-b-2 border-fire-500 bg-fire-50/50'
+                        : 'text-gray-500 hover:text-gray-700'
+                    }`}
                   >
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="h-5 w-5 animate-spin" />
-                        Envoi en cours...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="h-5 w-5" />
-                        Envoyer le message
-                      </>
-                    )}
+                    <FileText className="h-4 w-4" />
+                    Demande de devis
                   </button>
-                </form>
+                  <button
+                    onClick={() => { setActiveTab('contact'); setIsSuccess(false); setErrorMessage('') }}
+                    className={`flex-1 flex items-center justify-center gap-2 py-4 px-6 font-semibold text-sm transition-colors ${
+                      activeTab === 'contact'
+                        ? 'text-fire-500 border-b-2 border-fire-500 bg-fire-50/50'
+                        : 'text-gray-500 hover:text-gray-700'
+                    }`}
+                  >
+                    <MessageSquare className="h-4 w-4" />
+                    Question générale
+                  </button>
+                </div>
+
+                <div className="p-8">
+                  {isSuccess && (
+                    <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-500" />
+                      <p className="text-green-700">
+                        {activeTab === 'devis'
+                          ? 'Votre demande de devis a été envoyée ! Nous vous recontacterons sous 48h.'
+                          : 'Votre message a été envoyé avec succès !'}
+                      </p>
+                    </div>
+                  )}
+
+                  {errorMessage && (
+                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                      <p className="text-red-700">{errorMessage}</p>
+                    </div>
+                  )}
+
+                  {/* Devis form */}
+                  {activeTab === 'devis' && (
+                    <form onSubmit={devisForm.handleSubmit(onSubmitDevis)} className="space-y-8">
+                      <div>
+                        <div className="flex items-center gap-3 mb-6">
+                          <div className="bg-fire-500/10 p-2 rounded-lg">
+                            <Building className="h-5 w-5 text-fire-500" />
+                          </div>
+                          <h2 className="text-xl font-bold text-navy-700">Informations entreprise</h2>
+                        </div>
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <div className="md:col-span-2">
+                            <label htmlFor="entreprise" className="label-field">Nom de l&apos;entreprise <span className="text-red-500">*</span></label>
+                            <input type="text" id="entreprise" {...devisForm.register('entreprise')} className={`input-field ${devisForm.formState.errors.entreprise ? 'border-red-500' : ''}`} placeholder="Nom de votre entreprise" />
+                            {devisForm.formState.errors.entreprise && <p className="mt-1 text-sm text-red-500">{devisForm.formState.errors.entreprise.message}</p>}
+                          </div>
+                          <div>
+                            <label htmlFor="siret" className="label-field">SIRET</label>
+                            <input type="text" id="siret" {...devisForm.register('siret')} className="input-field" placeholder="123 456 789 00012" />
+                          </div>
+                          <div>
+                            <label htmlFor="adresseEntreprise" className="label-field">Adresse <span className="text-red-500">*</span></label>
+                            <input type="text" id="adresseEntreprise" {...devisForm.register('adresseEntreprise')} className={`input-field ${devisForm.formState.errors.adresseEntreprise ? 'border-red-500' : ''}`} placeholder="Adresse de l'entreprise" />
+                            {devisForm.formState.errors.adresseEntreprise && <p className="mt-1 text-sm text-red-500">{devisForm.formState.errors.adresseEntreprise.message}</p>}
+                          </div>
+                          <div>
+                            <label htmlFor="codePostal" className="label-field">Code postal <span className="text-red-500">*</span></label>
+                            <input type="text" id="codePostal" {...devisForm.register('codePostal')} className={`input-field ${devisForm.formState.errors.codePostal ? 'border-red-500' : ''}`} placeholder="75000" />
+                            {devisForm.formState.errors.codePostal && <p className="mt-1 text-sm text-red-500">{devisForm.formState.errors.codePostal.message}</p>}
+                          </div>
+                          <div>
+                            <label htmlFor="ville" className="label-field">Ville <span className="text-red-500">*</span></label>
+                            <input type="text" id="ville" {...devisForm.register('ville')} className={`input-field ${devisForm.formState.errors.ville ? 'border-red-500' : ''}`} placeholder="Paris" />
+                            {devisForm.formState.errors.ville && <p className="mt-1 text-sm text-red-500">{devisForm.formState.errors.ville.message}</p>}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="flex items-center gap-3 mb-6">
+                          <div className="bg-fire-500/10 p-2 rounded-lg"><User className="h-5 w-5 text-fire-500" /></div>
+                          <h2 className="text-xl font-bold text-navy-700">Contact</h2>
+                        </div>
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <div>
+                            <label htmlFor="nomContact" className="label-field">Nom du contact <span className="text-red-500">*</span></label>
+                            <input type="text" id="nomContact" {...devisForm.register('nomContact')} className={`input-field ${devisForm.formState.errors.nomContact ? 'border-red-500' : ''}`} placeholder="Nom et prénom" />
+                            {devisForm.formState.errors.nomContact && <p className="mt-1 text-sm text-red-500">{devisForm.formState.errors.nomContact.message}</p>}
+                          </div>
+                          <div>
+                            <label htmlFor="fonction" className="label-field">Fonction</label>
+                            <input type="text" id="fonction" {...devisForm.register('fonction')} className="input-field" placeholder="Directeur, Responsable sécurité..." />
+                          </div>
+                          <div>
+                            <label htmlFor="emailContact" className="label-field">Email <span className="text-red-500">*</span></label>
+                            <input type="email" id="emailContact" {...devisForm.register('emailContact')} className={`input-field ${devisForm.formState.errors.emailContact ? 'border-red-500' : ''}`} placeholder="contact@entreprise.fr" />
+                            {devisForm.formState.errors.emailContact && <p className="mt-1 text-sm text-red-500">{devisForm.formState.errors.emailContact.message}</p>}
+                          </div>
+                          <div>
+                            <label htmlFor="telephoneContact" className="label-field">Téléphone <span className="text-red-500">*</span></label>
+                            <input type="tel" id="telephoneContact" {...devisForm.register('telephoneContact')} className={`input-field ${devisForm.formState.errors.telephoneContact ? 'border-red-500' : ''}`} placeholder="06 00 00 00 00" />
+                            {devisForm.formState.errors.telephoneContact && <p className="mt-1 text-sm text-red-500">{devisForm.formState.errors.telephoneContact.message}</p>}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="flex items-center gap-3 mb-6">
+                          <div className="bg-fire-500/10 p-2 rounded-lg"><Clipboard className="h-5 w-5 text-fire-500" /></div>
+                          <h2 className="text-xl font-bold text-navy-700">Votre projet</h2>
+                        </div>
+                        <div className="space-y-6">
+                          <div>
+                            <label htmlFor="typePrestation" className="label-field">Type de prestation <span className="text-red-500">*</span></label>
+                            <select id="typePrestation" {...devisForm.register('typePrestation')} className={`input-field ${devisForm.formState.errors.typePrestation ? 'border-red-500' : ''}`}>
+                              {typesPrestation.map((type) => (<option key={type.value} value={type.value}>{type.label}</option>))}
+                            </select>
+                            {devisForm.formState.errors.typePrestation && <p className="mt-1 text-sm text-red-500">{devisForm.formState.errors.typePrestation.message}</p>}
+                          </div>
+                          <div>
+                            <label htmlFor="descriptionSite" className="label-field">Description du site <span className="text-red-500">*</span></label>
+                            <textarea id="descriptionSite" rows={4} {...devisForm.register('descriptionSite')} className={`input-field resize-none ${devisForm.formState.errors.descriptionSite ? 'border-red-500' : ''}`} placeholder="Décrivez votre site : type d'activité, nombre d'étages, nombre de personnes..." />
+                            {devisForm.formState.errors.descriptionSite && <p className="mt-1 text-sm text-red-500">{devisForm.formState.errors.descriptionSite.message}</p>}
+                          </div>
+                          <div className="grid md:grid-cols-3 gap-6">
+                            <div>
+                              <label htmlFor="surface" className="label-field">Surface (m²)</label>
+                              <input type="text" id="surface" {...devisForm.register('surface')} className="input-field" placeholder="1000" />
+                            </div>
+                            <div>
+                              <label htmlFor="nombreBatiments" className="label-field">Nombre de bâtiments</label>
+                              <input type="text" id="nombreBatiments" {...devisForm.register('nombreBatiments')} className="input-field" placeholder="1" />
+                            </div>
+                            <div>
+                              <label htmlFor="delaiSouhaite" className="label-field">Délai souhaité</label>
+                              <select id="delaiSouhaite" {...devisForm.register('delaiSouhaite')} className="input-field">
+                                {delais.map((d) => (<option key={d.value} value={d.value}>{d.label}</option>))}
+                              </select>
+                            </div>
+                          </div>
+                          <div>
+                            <label htmlFor="messageComplementaire" className="label-field">Message complémentaire</label>
+                            <textarea id="messageComplementaire" rows={3} {...devisForm.register('messageComplementaire')} className="input-field resize-none" placeholder="Informations complémentaires..." />
+                          </div>
+                        </div>
+                      </div>
+
+                      <button type="submit" disabled={isSubmitting} className="btn-primary w-full flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                        {isSubmitting ? (<><Loader2 className="h-5 w-5 animate-spin" />Envoi en cours...</>) : (<><Send className="h-5 w-5" />Envoyer la demande de devis</>)}
+                      </button>
+                    </form>
+                  )}
+
+                  {/* Contact form */}
+                  {activeTab === 'contact' && (
+                    <form onSubmit={contactForm.handleSubmit(onSubmitContact)} className="space-y-6">
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <div>
+                          <label htmlFor="nom" className="label-field">Nom <span className="text-red-500">*</span></label>
+                          <input type="text" id="nom" {...contactForm.register('nom')} className={`input-field ${contactForm.formState.errors.nom ? 'border-red-500' : ''}`} placeholder="Votre nom" />
+                          {contactForm.formState.errors.nom && <p className="mt-1 text-sm text-red-500">{contactForm.formState.errors.nom.message}</p>}
+                        </div>
+                        <div>
+                          <label htmlFor="prenom" className="label-field">Prénom <span className="text-red-500">*</span></label>
+                          <input type="text" id="prenom" {...contactForm.register('prenom')} className={`input-field ${contactForm.formState.errors.prenom ? 'border-red-500' : ''}`} placeholder="Votre prénom" />
+                          {contactForm.formState.errors.prenom && <p className="mt-1 text-sm text-red-500">{contactForm.formState.errors.prenom.message}</p>}
+                        </div>
+                      </div>
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <div>
+                          <label htmlFor="email" className="label-field">Email <span className="text-red-500">*</span></label>
+                          <input type="email" id="email" {...contactForm.register('email')} className={`input-field ${contactForm.formState.errors.email ? 'border-red-500' : ''}`} placeholder="votre@email.fr" />
+                          {contactForm.formState.errors.email && <p className="mt-1 text-sm text-red-500">{contactForm.formState.errors.email.message}</p>}
+                        </div>
+                        <div>
+                          <label htmlFor="telephone" className="label-field">Téléphone</label>
+                          <input type="tel" id="telephone" {...contactForm.register('telephone')} className="input-field" placeholder="06 00 00 00 00" />
+                        </div>
+                      </div>
+                      <div>
+                        <label htmlFor="sujet" className="label-field">Sujet <span className="text-red-500">*</span></label>
+                        <select id="sujet" {...contactForm.register('sujet')} className={`input-field ${contactForm.formState.errors.sujet ? 'border-red-500' : ''}`}>
+                          {sujets.map((s) => (<option key={s.value} value={s.value}>{s.label}</option>))}
+                        </select>
+                        {contactForm.formState.errors.sujet && <p className="mt-1 text-sm text-red-500">{contactForm.formState.errors.sujet.message}</p>}
+                      </div>
+                      <div>
+                        <label htmlFor="message" className="label-field">Message <span className="text-red-500">*</span></label>
+                        <textarea id="message" rows={5} {...contactForm.register('message')} className={`input-field resize-none ${contactForm.formState.errors.message ? 'border-red-500' : ''}`} placeholder="Décrivez votre demande..." />
+                        {contactForm.formState.errors.message && <p className="mt-1 text-sm text-red-500">{contactForm.formState.errors.message.message}</p>}
+                      </div>
+                      <button type="submit" disabled={isSubmitting} className="btn-primary w-full flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                        {isSubmitting ? (<><Loader2 className="h-5 w-5 animate-spin" />Envoi en cours...</>) : (<><Send className="h-5 w-5" />Envoyer le message</>)}
+                      </button>
+                    </form>
+                  )}
+                </div>
               </div>
             </div>
           </div>
