@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Shield, Search, FileCheck, ArrowRight, CheckCircle, Phone, Building2, Factory, Briefcase, Flame } from 'lucide-react'
+import { Shield, Search, FileCheck, ArrowRight, CheckCircle, Calendar, Building2, Factory, Briefcase, Flame, ClipboardCheck } from 'lucide-react'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/MotionWrapper'
 
 export default function Home() {
@@ -45,13 +45,13 @@ export default function Home() {
                     Demander un devis gratuit
                     <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
-                  <a
-                    href="tel:0645070708"
+                  <Link
+                    href="/contact#rdv"
                     className="border-2 border-white/30 text-white hover:bg-white/10 font-semibold py-4 px-8 rounded-xl transition-all inline-flex items-center justify-center gap-2"
                   >
-                    <Phone className="h-5 w-5" />
-                    06 45 07 07 08
-                  </a>
+                    <Calendar className="h-5 w-5" />
+                    Réserver un créneau
+                  </Link>
                 </div>
               </FadeIn>
             </div>
@@ -126,17 +126,17 @@ export default function Home() {
           </FadeIn>
 
           <StaggerContainer className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* PREVARIE */}
+            {/* Prévention & Analyse */}
             <StaggerItem>
               <Link href="/services/prevarie" className="group block bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all border border-gray-100 hover:border-fire-200 h-full">
                 <div className="bg-fire-50 p-4 rounded-xl w-fit mb-6 group-hover:bg-fire-500 transition-colors">
                   <Search className="h-8 w-8 text-fire-500 group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="text-2xl font-bold text-navy-700 mb-3 group-hover:text-fire-500 transition-colors">
-                  PREVARIE
+                  Prévention & Analyse
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Prévention et Analyse des Risques d&apos;Incendies et d&apos;Explosions
+                  Identifiez et maîtrisez les risques d&apos;incendie avant qu&apos;ils ne deviennent des incidents. Diagnostic, évaluation et plan d&apos;action concret.
                 </p>
                 <div className="flex items-center text-fire-500 font-medium">
                   En savoir plus
@@ -145,17 +145,17 @@ export default function Home() {
               </Link>
             </StaggerItem>
 
-            {/* INAVRIE */}
+            {/* Audit de Vulnérabilité */}
             <StaggerItem>
               <Link href="/services/inavrie" className="group block bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all border border-gray-100 hover:border-fire-200 h-full">
                 <div className="bg-fire-50 p-4 rounded-xl w-fit mb-6 group-hover:bg-fire-500 transition-colors">
                   <FileCheck className="h-8 w-8 text-fire-500 group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="text-2xl font-bold text-navy-700 mb-3 group-hover:text-fire-500 transition-colors">
-                  INAVRIE
+                  Audit de Vulnérabilité
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Ingénieur et Analyste de Vulnérabilité des Risques d&apos;Incendie et d&apos;Explosion
+                  Évaluez la résistance réelle de vos installations face aux risques majeurs. Analyse technique, quantification et solutions sur mesure.
                 </p>
                 <div className="flex items-center text-fire-500 font-medium">
                   En savoir plus
@@ -167,8 +167,100 @@ export default function Home() {
         </div>
       </section>
 
+      {/* DUERP - Nouvelle offre */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-fire-500/5 rounded-full blur-3xl" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <FadeIn>
+              <div className="inline-flex items-center gap-2 bg-fire-500/10 text-fire-500 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                <ClipboardCheck className="h-4 w-4" />
+                Nouveau
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-navy-700 mb-6">
+                Créez votre DUERP en ligne, simplement
+              </h2>
+              <p className="text-gray-600 text-lg mb-8">
+                Le Document Unique d&apos;Évaluation des Risques Professionnels est obligatoire
+                pour toute entreprise. Notre plateforme digitale vous guide étape par étape :
+                27 catégories de risques, calcul automatique et rapport PDF conforme.
+              </p>
+              <div className="space-y-3 mb-8">
+                {[
+                  'Évaluation guidée des 27 familles de risques',
+                  'Calcul automatique du risque brut et résiduel',
+                  'Plans d\'action intégrés et suivis',
+                  'Rapport PDF conforme à la réglementation',
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 shrink-0" />
+                    <span className="text-gray-700">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  href="/duerp/demo"
+                  className="group bg-fire-500 hover:bg-fire-600 text-white font-semibold py-3 px-6 rounded-xl transition-all inline-flex items-center justify-center gap-2"
+                >
+                  Essayer la démo gratuite
+                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link
+                  href="/duerp"
+                  className="text-fire-500 hover:text-fire-600 font-semibold py-3 px-6 rounded-xl transition-colors inline-flex items-center justify-center gap-2"
+                >
+                  En savoir plus
+                </Link>
+              </div>
+            </FadeIn>
+
+            <FadeIn>
+              <div className="bg-gray-50 rounded-2xl p-8">
+                <div className="grid grid-cols-3 gap-4 mb-6">
+                  <div className="bg-red-50 rounded-xl p-4 text-center border border-red-100">
+                    <div className="text-2xl font-bold text-red-600">12</div>
+                    <div className="text-xs text-red-500">Élevés</div>
+                  </div>
+                  <div className="bg-orange-50 rounded-xl p-4 text-center border border-orange-100">
+                    <div className="text-2xl font-bold text-orange-600">38</div>
+                    <div className="text-xs text-orange-500">Moyens</div>
+                  </div>
+                  <div className="bg-green-50 rounded-xl p-4 text-center border border-green-100">
+                    <div className="text-2xl font-bold text-green-600">157</div>
+                    <div className="text-xs text-green-500">Faibles</div>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    { name: 'Administration', pct: 85 },
+                    { name: 'Production', pct: 100 },
+                    { name: 'Logistique', pct: 45 },
+                  ].map((ut) => (
+                    <div key={ut.name} className="flex items-center gap-3">
+                      <span className="text-sm text-gray-600 w-28">{ut.name}</span>
+                      <div className="flex-1 bg-gray-200 rounded-full h-2.5">
+                        <div
+                          className="bg-fire-500 h-2.5 rounded-full transition-all"
+                          style={{ width: `${ut.pct}%` }}
+                        />
+                      </div>
+                      <span className="text-sm font-bold text-navy-700 w-12 text-right">{ut.pct}%</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 pt-6 border-t border-gray-200 text-center">
+                  <span className="text-fire-500 font-bold text-lg">À partir de 299 €</span>
+                  <span className="text-gray-500 text-sm ml-2">HT</span>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
       {/* Réglementation - Section moderne */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center mb-16">
             <span className="text-fire-500 font-semibold text-sm uppercase tracking-wider">
@@ -288,8 +380,8 @@ export default function Home() {
                 Prêt à sécuriser vos installations ?
               </h2>
               <p className="text-xl text-white/90 mb-10">
-                Contactez-nous pour une évaluation gratuite de vos besoins
-                en matière de sécurité incendie.
+                Réservez un échange gratuit avec notre expert pour évaluer
+                vos besoins en sécurité incendie.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
@@ -299,13 +391,13 @@ export default function Home() {
                   Demander un devis gratuit
                   <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <a
-                  href="tel:0645070708"
+                <Link
+                  href="/contact#rdv"
                   className="border-2 border-white text-white hover:bg-white hover:text-fire-600 font-semibold py-4 px-8 rounded-xl transition-colors inline-flex items-center justify-center gap-2"
                 >
-                  <Phone className="h-5 w-5" />
-                  06 45 07 07 08
-                </a>
+                  <Calendar className="h-5 w-5" />
+                  Prendre rendez-vous
+                </Link>
               </div>
             </FadeIn>
           </div>

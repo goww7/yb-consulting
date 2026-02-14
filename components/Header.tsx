@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Menu, X, Phone, Flame, ChevronDown } from 'lucide-react'
+import { Menu, X, Calendar, Flame, ChevronDown } from 'lucide-react'
 
 type NavItem = {
   name: string
@@ -17,8 +17,17 @@ const navigation: NavItem[] = [
     name: 'Services',
     href: '#',
     submenu: [
-      { name: 'PREVARIE', href: '/services/prevarie' },
-      { name: 'INAVRIE', href: '/services/inavrie' },
+      { name: 'Prévention & Analyse', href: '/services/prevarie' },
+      { name: 'Audit de Vulnérabilité', href: '/services/inavrie' },
+    ]
+  },
+  {
+    name: 'DUERP',
+    href: '/duerp',
+    submenu: [
+      { name: 'Plateforme DUERP', href: '/duerp' },
+      { name: 'Essayer la démo', href: '/duerp/demo' },
+      { name: 'Tarifs', href: '/duerp/tarifs' },
     ]
   },
   {
@@ -61,7 +70,7 @@ export default function Header() {
               <Flame className="h-8 w-8 text-white" />
             </div>
             <div>
-              <span className="text-xl font-bold text-navy-700">YB Consulting</span>
+              <span className="text-xl font-bold text-navy-700">Prevarie</span>
               <p className="text-xs text-gray-500">Audit et Sécurité Incendie</p>
             </div>
           </Link>
@@ -114,14 +123,14 @@ export default function Header() {
               )
             ))}
 
-            {/* Phone CTA */}
-            <a
-              href="tel:0645070708"
+            {/* Calendly CTA */}
+            <Link
+              href="/contact#rdv"
               className="flex items-center gap-2 btn-primary"
             >
-              <Phone className="h-4 w-4" />
-              <span>06 45 07 07 08</span>
-            </a>
+              <Calendar className="h-4 w-4" />
+              <span>Prendre rendez-vous</span>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -187,13 +196,13 @@ export default function Header() {
               )
             ))}
             <div className="px-4 pt-4">
-              <a
-                href="tel:0645070708"
+              <Link
+                href="/contact#rdv"
                 className="flex items-center justify-center gap-2 btn-primary w-full"
               >
-                <Phone className="h-4 w-4" />
-                <span>06 45 07 07 08</span>
-              </a>
+                <Calendar className="h-4 w-4" />
+                <span>Prendre rendez-vous</span>
+              </Link>
             </div>
           </div>
         )}

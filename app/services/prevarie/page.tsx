@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Search, CheckCircle, ArrowRight, Shield, FileText, Users, AlertTriangle } from 'lucide-react'
+import { Search, CheckCircle, ArrowRight, Shield, FileText, Users, AlertTriangle, Calendar } from 'lucide-react'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/MotionWrapper'
 
 export default function Prevarie() {
@@ -17,31 +17,40 @@ export default function Prevarie() {
                   <Search className="h-4 w-4" />
                   Service spécialisé
                 </div>
-                <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">PREVARIE</h1>
+                <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Prévention & Analyse</h1>
                 <p className="text-xl text-fire-400 font-semibold mb-6">
-                  Prévention et Analyse des Risques d&apos;Incendies et d&apos;Explosions
+                  Anticipez les risques d&apos;incendie et d&apos;explosion
                 </p>
                 <p className="text-lg text-gray-300 mb-8">
-                  Une approche proactive pour identifier et maîtriser les risques
-                  avant qu&apos;ils ne deviennent des incidents.
+                  Nous identifions les dangers, évaluons les risques et mettons en place
+                  un plan d&apos;action concret pour protéger vos établissements.
                 </p>
-                <Link
-                  href="/devis"
-                  className="bg-fire-500 hover:bg-fire-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-flex items-center gap-2"
-                >
-                  Demander un devis
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link
+                    href="/devis"
+                    className="bg-fire-500 hover:bg-fire-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-flex items-center gap-2"
+                  >
+                    Demander un devis
+                    <ArrowRight className="h-5 w-5" />
+                  </Link>
+                  <Link
+                    href="/contact#rdv"
+                    className="border-2 border-white/30 text-white hover:bg-white/10 font-semibold py-3 px-6 rounded-lg transition-colors inline-flex items-center gap-2"
+                  >
+                    <Calendar className="h-5 w-5" />
+                    Prendre rendez-vous
+                  </Link>
+                </div>
               </FadeIn>
             </div>
 
             <FadeIn className="hidden lg:block">
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { icon: Shield, title: 'Prévention', desc: 'Anticipation des risques' },
-                  { icon: Search, title: 'Analyse', desc: 'Évaluation approfondie' },
-                  { icon: FileText, title: 'Plans', desc: 'Actions concrètes' },
-                  { icon: Users, title: 'Formation', desc: 'Équipes formées' },
+                  { icon: Shield, title: 'Prévention', desc: 'Anticiper les dangers' },
+                  { icon: Search, title: 'Analyse', desc: 'Évaluer les risques' },
+                  { icon: FileText, title: 'Plan d\'action', desc: 'Agir concrètement' },
+                  { icon: Users, title: 'Formation', desc: 'Former vos équipes' },
                 ].map((item) => (
                   <div key={item.title} className="bg-white/10 rounded-xl p-5">
                     <item.icon className="h-8 w-8 text-fire-400 mb-3" />
@@ -55,20 +64,19 @@ export default function Prevarie() {
         </div>
       </section>
 
-      {/* Qu'est-ce que PREVARIE */}
+      {/* Comment ça marche - en 3 étapes simples */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="max-w-3xl mx-auto text-center mb-16">
             <span className="text-fire-500 font-semibold text-sm uppercase tracking-wider">
-              Notre méthodologie
+              Comment ça marche
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-navy-700 mt-3 mb-6">
-              Qu&apos;est-ce que PREVARIE ?
+              3 étapes pour sécuriser vos installations
             </h2>
             <p className="text-gray-600 text-lg">
-              PREVARIE est notre approche méthodologique pour la prévention et l&apos;analyse
-              des risques d&apos;incendie et d&apos;explosion. Elle combine diagnostic terrain,
-              analyse réglementaire et recommandations opérationnelles.
+              Notre méthode éprouvée combine visite terrain, analyse rigoureuse
+              et recommandations opérationnelles pour garantir votre sécurité.
             </p>
           </FadeIn>
 
@@ -76,18 +84,18 @@ export default function Prevarie() {
             {[
               {
                 icon: Search,
-                title: 'Diagnostic initial',
-                desc: 'Visite sur site, analyse de l\'existant, identification des sources de danger et des zones à risque.',
+                title: '1. Diagnostic terrain',
+                desc: 'Nous visitons votre site, identifions les sources de danger et analysons les zones à risque.',
               },
               {
                 icon: AlertTriangle,
-                title: 'Évaluation des risques',
-                desc: 'Classification des risques par niveau de criticité, analyse des scénarios d\'accident potentiels.',
+                title: '2. Évaluation des risques',
+                desc: 'Nous classons les risques par niveau de gravité et analysons les scénarios d\'accident possibles.',
               },
               {
                 icon: FileText,
-                title: 'Plan d\'action',
-                desc: 'Recommandations priorisées, planning de mise en œuvre, indicateurs de suivi.',
+                title: '3. Plan d\'action',
+                desc: 'Vous recevez un plan d\'action priorisé avec des recommandations concrètes et un planning de mise en œuvre.',
               },
             ].map((item) => (
               <StaggerItem key={item.title}>
@@ -104,30 +112,29 @@ export default function Prevarie() {
         </div>
       </section>
 
-      {/* Avantages */}
+      {/* Pourquoi choisir ce service */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <FadeIn>
                 <span className="text-fire-500 font-semibold text-sm uppercase tracking-wider">
-                  Pourquoi PREVARIE
+                  Vos avantages
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold text-navy-700 mt-3 mb-6">
-                  Une approche préventive complète
+                  Ce que vous obtenez
                 </h2>
                 <p className="text-gray-600 text-lg mb-8">
-                  La prévention est la clé d&apos;une sécurité incendie efficace. Notre approche
-                  PREVARIE vous permet d&apos;anticiper les risques et de mettre en place les
-                  mesures adaptées avant tout incident.
+                  Un accompagnement complet pour anticiper les risques et mettre
+                  votre établissement en conformité avec la réglementation.
                 </p>
 
                 <div className="space-y-3">
                   {[
-                    'Identification exhaustive des risques',
-                    'Conformité réglementaire garantie',
-                    'Plan d\'action priorisé et budgétisé',
-                    'Formation et sensibilisation des équipes',
+                    'Un état des lieux clair de vos risques incendie',
+                    'La conformité réglementaire de vos installations',
+                    'Un plan d\'action chiffré et priorisé',
+                    'La formation de vos équipes aux bons réflexes',
                   ].map((item) => (
                     <div key={item} className="flex items-center gap-3">
                       <CheckCircle className="h-5 w-5 text-green-500" />
@@ -143,7 +150,7 @@ export default function Prevarie() {
                 <div className="text-5xl font-bold mb-2">100%</div>
                 <div className="text-white/80 mb-4">Objectif conformité</div>
                 <p className="text-white/90">
-                  Notre méthodologie vise la conformité totale de vos installations
+                  Notre approche vise la conformité totale de vos installations
                   aux réglementations en vigueur.
                 </p>
               </div>
@@ -152,15 +159,15 @@ export default function Prevarie() {
         </div>
       </section>
 
-      {/* Prestations détaillées */}
+      {/* Nos prestations */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center mb-16">
             <span className="text-fire-500 font-semibold text-sm uppercase tracking-wider">
-              Détails
+              En détail
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-navy-700 mt-3 mb-4">
-              Nos prestations PREVARIE
+              Ce que nous faisons pour vous
             </h2>
           </FadeIn>
 
@@ -169,25 +176,25 @@ export default function Prevarie() {
               {
                 num: '1',
                 title: 'Audit préventif complet',
-                desc: 'Évaluation exhaustive de votre établissement : moyens de secours, issues de secours, désenfumage, compartimentage, stockages, process...',
-                items: ['Vérification des moyens d\'extinction', 'Analyse du système de détection', 'Contrôle des évacuations', 'Évaluation du compartimentage'],
+                desc: 'Nous passons au crible votre établissement : moyens de secours, issues de secours, désenfumage, compartimentage, stockages...',
+                items: ['Moyens d\'extinction', 'Système de détection', 'Issues d\'évacuation', 'Compartimentage'],
               },
               {
                 num: '2',
-                title: 'Analyse réglementaire',
-                desc: 'Vérification de la conformité aux réglementations en vigueur : Code du travail, règlement de sécurité ERP, réglementation ICPE...',
-                items: ['Conformité Code du travail', 'Réglementation ERP/IGH', 'Exigences ICPE/SEVESO', 'Normes techniques'],
+                title: 'Vérification réglementaire',
+                desc: 'Nous vérifions que votre établissement respecte toutes les réglementations : Code du travail, ERP, ICPE...',
+                items: ['Code du travail', 'Réglementation ERP/IGH', 'Exigences ICPE/SEVESO', 'Normes techniques'],
               },
               {
                 num: '3',
-                title: 'Plan de prévention personnalisé',
-                desc: 'Élaboration d\'un plan d\'action sur mesure avec priorisation des actions, estimation budgétaire et planning de mise en œuvre.',
+                title: 'Plan de prévention sur mesure',
+                desc: 'Nous vous remettons un plan d\'action clair avec les priorités, le budget estimé et le planning.',
                 items: ['Actions priorisées', 'Estimations budgétaires', 'Planning de réalisation', 'Indicateurs de suivi'],
               },
               {
                 num: '4',
-                title: 'Formation du personnel',
-                desc: 'Sensibilisation et formation de vos équipes aux risques incendie, aux procédures d\'évacuation et à l\'utilisation des moyens de secours.',
+                title: 'Formation de vos équipes',
+                desc: 'Nous formons votre personnel aux risques incendie, aux procédures d\'évacuation et à l\'utilisation des moyens de secours.',
                 items: ['Sensibilisation aux risques', 'Manipulation extincteurs', 'Exercices d\'évacuation', 'Formation équipiers'],
               },
             ].map((prestation) => (
@@ -221,24 +228,24 @@ export default function Prevarie() {
       <section className="py-16 bg-fire-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Anticipez les risques avec PREVARIE
+            Anticipez les risques, protégez vos équipes
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Contactez-nous pour une analyse préventive de vos installations.
+            Échangez gratuitement avec notre expert pour évaluer vos besoins.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/devis"
+              href="/contact#rdv"
               className="bg-white text-fire-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-colors inline-flex items-center justify-center gap-2"
             >
-              Demander un devis
-              <ArrowRight className="h-5 w-5" />
+              <Calendar className="h-5 w-5" />
+              Prendre rendez-vous
             </Link>
             <Link
               href="/services/inavrie"
               className="border-2 border-white text-white hover:bg-white hover:text-fire-600 font-semibold py-3 px-8 rounded-lg transition-colors"
             >
-              Découvrir INAVRIE
+              Découvrir l&apos;Audit de Vulnérabilité
             </Link>
           </div>
         </div>

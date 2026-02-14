@@ -56,7 +56,7 @@ export default function APropos() {
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
                 À propos de
-                <span className="text-fire-500"> YB Consulting</span>
+                <span className="text-fire-500"> Prevarie</span>
               </h1>
               <p className="text-xl text-gray-300 leading-relaxed">
                 Plus de 20 ans d&apos;expérience en hygiène, sécurité et environnement
@@ -104,7 +104,7 @@ export default function APropos() {
                 </h2>
                 <p className="text-gray-600 text-lg mb-6">
                   Fort de plus de <strong>20 ans d&apos;expérience</strong> dans le domaine de la sécurité
-                  incendie et de la prévention des risques, le fondateur de YB Consulting a développé
+                  incendie et de la prévention des risques, le fondateur de Prevarie a développé
                   une expertise unique à travers des postes à responsabilité dans des secteurs variés.
                 </p>
                 <p className="text-gray-600 text-lg mb-8">
@@ -277,7 +277,7 @@ export default function APropos() {
                   Notre Mission
                 </h2>
                 <p className="text-gray-600 text-lg mb-6">
-                  YB Consulting a pour mission d&apos;accompagner les entreprises et les collectivités
+                  Prevarie a pour mission d&apos;accompagner les entreprises et les collectivités
                   dans la maîtrise des risques d&apos;incendie et d&apos;explosion. Notre approche
                   combine expertise technique, méthodologie rigoureuse et accompagnement personnalisé.
                 </p>

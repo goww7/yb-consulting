@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { FileCheck, CheckCircle, ArrowRight, Shield, Target, BarChart, Wrench } from 'lucide-react'
+import { FileCheck, CheckCircle, ArrowRight, Shield, Target, BarChart, Wrench, Calendar } from 'lucide-react'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/MotionWrapper'
 
 export default function Inavrie() {
@@ -17,29 +17,38 @@ export default function Inavrie() {
                   <FileCheck className="h-4 w-4" />
                   Expertise technique
                 </div>
-                <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">INAVRIE</h1>
+                <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Audit de Vulnérabilité</h1>
                 <p className="text-xl text-fire-400 font-semibold mb-6">
-                  Ingénieur et Analyste de Vulnérabilité des Risques d&apos;Incendie et d&apos;Explosion
+                  Mesurez et réduisez vos failles face aux risques incendie
                 </p>
                 <p className="text-lg text-gray-300 mb-8">
-                  Une expertise technique pointue pour évaluer et réduire
-                  la vulnérabilité de vos installations face aux risques majeurs.
+                  Nous analysons en profondeur la résistance de vos installations
+                  et vous fournissons des solutions techniques concrètes.
                 </p>
-                <Link
-                  href="/devis"
-                  className="bg-fire-500 hover:bg-fire-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-flex items-center gap-2"
-                >
-                  Demander un devis
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link
+                    href="/devis"
+                    className="bg-fire-500 hover:bg-fire-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-flex items-center gap-2"
+                  >
+                    Demander un devis
+                    <ArrowRight className="h-5 w-5" />
+                  </Link>
+                  <Link
+                    href="/contact#rdv"
+                    className="border-2 border-white/30 text-white hover:bg-white/10 font-semibold py-3 px-6 rounded-lg transition-colors inline-flex items-center gap-2"
+                  >
+                    <Calendar className="h-5 w-5" />
+                    Prendre rendez-vous
+                  </Link>
+                </div>
               </FadeIn>
             </div>
 
             <FadeIn className="hidden lg:block">
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { icon: Target, title: 'Vulnérabilité', desc: 'Analyse approfondie' },
-                  { icon: BarChart, title: 'Quantification', desc: 'Mesure des risques' },
+                  { icon: Target, title: 'Vulnérabilité', desc: 'Trouver les failles' },
+                  { icon: BarChart, title: 'Quantification', desc: 'Mesurer les risques' },
                   { icon: Shield, title: 'Protection', desc: 'Solutions adaptées' },
                   { icon: Wrench, title: 'Ingénierie', desc: 'Expertise technique' },
                 ].map((item) => (
@@ -55,20 +64,20 @@ export default function Inavrie() {
         </div>
       </section>
 
-      {/* Qu'est-ce que INAVRIE */}
+      {/* En quoi ça consiste */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="max-w-3xl mx-auto text-center mb-16">
             <span className="text-fire-500 font-semibold text-sm uppercase tracking-wider">
-              Notre expertise
+              En quoi ça consiste
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-navy-700 mt-3 mb-6">
-              Qu&apos;est-ce que INAVRIE ?
+              Aller au-delà de la simple conformité
             </h2>
             <p className="text-gray-600 text-lg">
-              INAVRIE est notre approche d&apos;ingénierie spécialisée dans l&apos;analyse
-              de vulnérabilité. Elle permet d&apos;identifier les failles de vos systèmes
-              de protection et de proposer des solutions d&apos;amélioration ciblées.
+              L&apos;audit de vulnérabilité évalue la capacité réelle de vos installations
+              à résister aux risques d&apos;incendie et d&apos;explosion. On identifie
+              les failles et on propose des solutions concrètes.
             </p>
           </FadeIn>
 
@@ -76,18 +85,18 @@ export default function Inavrie() {
             {[
               {
                 icon: Target,
-                title: 'Analyse de vulnérabilité',
-                desc: 'Identification des points faibles de vos installations, évaluation de leur impact potentiel sur la sécurité.',
+                title: 'Trouver les failles',
+                desc: 'Identification des points faibles de vos installations et évaluation de leur impact sur la sécurité.',
               },
               {
                 icon: BarChart,
-                title: 'Quantification des risques',
-                desc: 'Évaluation chiffrée des risques, probabilité d\'occurrence et gravité des conséquences potentielles.',
+                title: 'Mesurer les risques',
+                desc: 'Évaluation chiffrée : probabilité d\'occurrence, gravité des conséquences, coûts potentiels.',
               },
               {
                 icon: Wrench,
-                title: 'Solutions techniques',
-                desc: 'Recommandations d\'ingénierie pour réduire la vulnérabilité, dimensionnement des moyens de protection.',
+                title: 'Proposer des solutions',
+                desc: 'Recommandations techniques pour réduire la vulnérabilité et dimensionner les protections.',
               },
             ].map((item) => (
               <StaggerItem key={item.title}>
@@ -104,30 +113,29 @@ export default function Inavrie() {
         </div>
       </section>
 
-      {/* Avantages */}
+      {/* Ce que vous obtenez */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <FadeIn>
                 <span className="text-fire-500 font-semibold text-sm uppercase tracking-wider">
-                  Expertise technique
+                  Vos avantages
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold text-navy-700 mt-3 mb-6">
-                  Une analyse de vulnérabilité approfondie
+                  Ce que vous obtenez
                 </h2>
                 <p className="text-gray-600 text-lg mb-8">
-                  L&apos;analyse de vulnérabilité permet d&apos;aller au-delà de la simple conformité
-                  réglementaire. Elle évalue la capacité réelle de vos installations à
-                  résister aux risques d&apos;incendie et d&apos;explosion.
+                  Une vision complète et chiffrée de la vulnérabilité de vos installations,
+                  avec des recommandations actionnables.
                 </p>
 
                 <div className="space-y-3">
                   {[
-                    'Identification des points faibles critiques',
+                    'Cartographie précise de vos points faibles',
                     'Quantification des risques résiduels',
-                    'Dimensionnement des protections',
-                    'Analyse coût/bénéfice des améliorations',
+                    'Dimensionnement des protections nécessaires',
+                    'Analyse coût/bénéfice de chaque amélioration',
                   ].map((item) => (
                     <div key={item} className="flex items-center gap-3">
                       <CheckCircle className="h-5 w-5 text-green-500" />
@@ -152,15 +160,15 @@ export default function Inavrie() {
         </div>
       </section>
 
-      {/* Méthodologie */}
+      {/* Notre méthode en 4 étapes */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center mb-16">
             <span className="text-fire-500 font-semibold text-sm uppercase tracking-wider">
-              Méthodologie
+              Notre méthode
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-navy-700 mt-3 mb-4">
-              Notre approche INAVRIE
+              4 étapes pour réduire votre vulnérabilité
             </h2>
           </FadeIn>
 
@@ -168,26 +176,26 @@ export default function Inavrie() {
             {[
               {
                 num: '1',
-                title: 'Cartographie des actifs',
-                desc: 'Identification et classification de tous les éléments critiques : bâtiments, équipements, stockages, réseaux, personnel...',
-                items: ['Inventaire des actifs critiques', 'Classification par importance', 'Interdépendances identifiées', 'Valeur de remplacement'],
+                title: 'Inventaire de vos actifs',
+                desc: 'Nous identifions et classons tous vos éléments critiques : bâtiments, équipements, stockages, réseaux, personnel.',
+                items: ['Actifs critiques identifiés', 'Classification par importance', 'Interdépendances cartographiées', 'Valeur de remplacement estimée'],
               },
               {
                 num: '2',
                 title: 'Analyse des scénarios',
-                desc: 'Étude détaillée des scénarios d\'incendie et d\'explosion possibles, modélisation des phénomènes dangereux et de leur propagation.',
-                items: ['Identification des sources d\'ignition', 'Analyse des combustibles', 'Modélisation de propagation', 'Évaluation des effets domino'],
+                desc: 'Nous étudions les scénarios d\'incendie et d\'explosion possibles et modélisons leur propagation.',
+                items: ['Sources d\'ignition identifiées', 'Combustibles analysés', 'Propagation modélisée', 'Effets domino évalués'],
               },
               {
                 num: '3',
                 title: 'Évaluation des protections',
-                desc: 'Audit des moyens de protection existants, analyse de leur efficacité et de leur adéquation face aux risques identifiés.',
+                desc: 'Nous auditons vos moyens de protection existants et mesurons leur efficacité face aux risques identifiés.',
                 items: ['Protection passive (structure)', 'Protection active (extinction)', 'Détection et alarme', 'Organisation des secours'],
               },
               {
                 num: '4',
-                title: 'Rapport technique détaillé',
-                desc: 'Livraison d\'un rapport complet avec cartographie des vulnérabilités, recommandations techniques et plan d\'amélioration priorisé.',
+                title: 'Rapport et plan d\'amélioration',
+                desc: 'Vous recevez un rapport complet avec la cartographie des vulnérabilités et un plan d\'amélioration chiffré.',
                 items: ['Synthèse des vulnérabilités', 'Recommandations chiffrées', 'Analyse coût/bénéfice', 'Feuille de route technique'],
               },
             ].map((step) => (
@@ -217,7 +225,7 @@ export default function Inavrie() {
         </div>
       </section>
 
-      {/* Livrables */}
+      {/* Ce que vous recevez */}
       <section className="py-20 bg-navy-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center mb-12">
@@ -225,19 +233,19 @@ export default function Inavrie() {
               Livrables
             </span>
             <h2 className="text-3xl md:text-4xl font-bold mt-3 mb-4">
-              Les livrables INAVRIE
+              Ce que vous recevez
             </h2>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-              Des documents techniques exploitables pour améliorer votre sécurité
+              Des documents techniques concrets pour améliorer votre sécurité
             </p>
           </FadeIn>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { icon: FileCheck, title: 'Rapport d\'analyse', desc: 'Document technique complet' },
-              { icon: Target, title: 'Matrice de vulnérabilité', desc: 'Classification des failles' },
+              { icon: Target, title: 'Matrice de vulnérabilité', desc: 'Cartographie des failles' },
               { icon: BarChart, title: 'Tableaux de bord', desc: 'Indicateurs de suivi' },
-              { icon: Wrench, title: 'Plan d\'amélioration', desc: 'Actions priorisées' },
+              { icon: Wrench, title: 'Plan d\'amélioration', desc: 'Actions chiffrées et priorisées' },
             ].map((item) => (
               <FadeIn key={item.title}>
                 <div className="bg-white/10 rounded-xl p-6 text-center">
@@ -255,24 +263,24 @@ export default function Inavrie() {
       <section className="py-16 bg-fire-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Évaluez la vulnérabilité de vos installations
+            Connaissez-vous les failles de vos installations ?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Contactez-nous pour une analyse technique approfondie de vos risques.
+            Échangez gratuitement avec notre expert pour évaluer votre niveau de vulnérabilité.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/devis"
+              href="/contact#rdv"
               className="bg-white text-fire-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-colors inline-flex items-center justify-center gap-2"
             >
-              Demander un devis
-              <ArrowRight className="h-5 w-5" />
+              <Calendar className="h-5 w-5" />
+              Prendre rendez-vous
             </Link>
             <Link
               href="/services/prevarie"
               className="border-2 border-white text-white hover:bg-white hover:text-fire-600 font-semibold py-3 px-8 rounded-lg transition-colors"
             >
-              Découvrir PREVARIE
+              Découvrir la Prévention & Analyse
             </Link>
           </div>
         </div>

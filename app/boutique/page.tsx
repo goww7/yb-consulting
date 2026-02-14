@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { ShoppingCart, FileText, BookOpen, Video, Users, Download, CheckCircle, Star, Filter, ArrowRight } from 'lucide-react'
+import { ShoppingCart, FileText, BookOpen, Video, Users, Download, CheckCircle, Star, Filter, ArrowRight, ClipboardCheck, Shield } from 'lucide-react'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/MotionWrapper'
 
 type Product = {
@@ -172,6 +172,40 @@ export default function Boutique() {
               </p>
             </div>
           </FadeIn>
+        </div>
+      </section>
+
+      {/* DUERP Banner */}
+      <section className="py-8 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-gradient-to-r from-navy-700 to-navy-800 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-6">
+            <div className="bg-fire-500 p-4 rounded-xl shrink-0">
+              <ClipboardCheck className="h-10 w-10 text-white" />
+            </div>
+            <div className="flex-1 text-center md:text-left">
+              <div className="flex items-center gap-2 justify-center md:justify-start mb-1">
+                <h3 className="text-xl font-bold text-white">Plateforme DUERP en ligne</h3>
+                <span className="bg-fire-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">Nouveau</span>
+              </div>
+              <p className="text-gray-300 text-sm">
+                Créez votre Document Unique d&apos;Évaluation des Risques Professionnels en quelques heures.
+                27 catégories de risques, calcul automatique, rapport PDF conforme.
+              </p>
+            </div>
+            <div className="flex items-center gap-4 shrink-0">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-white">299 €</div>
+                <div className="text-gray-400 text-xs">À partir de</div>
+              </div>
+              <Link
+                href="/duerp"
+                className="bg-fire-500 hover:bg-fire-600 text-white font-semibold py-3 px-6 rounded-xl transition-colors inline-flex items-center gap-2"
+              >
+                Découvrir
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 

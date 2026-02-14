@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://yb-consulting.fr/sitemap.xml',
+    sitemap: 'https://prevarie.fr/sitemap.xml',
   }
 }
