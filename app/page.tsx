@@ -1,15 +1,62 @@
 import Link from 'next/link'
 import {
   Shield, Search, FileCheck, ArrowRight, CheckCircle, Building2, Factory, Briefcase,
-  ClipboardCheck, Award, GraduationCap, ShoppingCart
+  ClipboardCheck, Award, GraduationCap, ShoppingCart, HeartPulse, School, Warehouse,
+  HelpCircle, Clock, Zap
 } from 'lucide-react'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/MotionWrapper'
 import CTASection from '@/components/CTASection'
 import { STATS } from '@/lib/constants'
 
+const faqItems = [
+  {
+    question: 'Combien coûte un audit de sécurité incendie ?',
+    answer: 'Le coût dépend de la taille et du type de votre établissement. Nos audits démarrent à partir de 890 € HT pour un ERP. Contactez-nous pour un devis personnalisé gratuit sous 48h.',
+  },
+  {
+    question: 'Combien de temps dure un audit ?',
+    answer: 'La visite sur site dure généralement 1 journée. Le rapport complet avec plan d\'action vous est remis sous 2 semaines. L\'ensemble du processus, de la prise de contact à la restitution, prend 3 à 4 semaines.',
+  },
+  {
+    question: 'Quelles réglementations couvrez-vous ?',
+    answer: 'Nous couvrons l\'ensemble de la réglementation incendie française : ERP (arrêté du 25 juin 1980), IGH (arrêté du 30 décembre 2011), ICPE et SEVESO (Code de l\'environnement), et Code du travail (articles R4227).',
+  },
+  {
+    question: 'Le DUERP est-il obligatoire ?',
+    answer: 'Oui, le Document Unique d\'Évaluation des Risques Professionnels est obligatoire pour toute entreprise dès le 1er salarié (article R4121-1 du Code du travail). Il doit être mis à jour au minimum chaque année et conservé 40 ans.',
+  },
+  {
+    question: 'Proposez-vous un suivi après l\'audit ?',
+    answer: 'Oui. Chaque audit inclut un suivi de 3 mois pour accompagner la mise en œuvre des recommandations. Nous proposons aussi un abonnement de veille réglementaire annuel pour rester conforme aux évolutions.',
+  },
+  {
+    question: 'Intervenez-vous dans toute la France ?',
+    answer: 'Oui, nous intervenons sur l\'ensemble du territoire national. Pour les sites hors métropole ou à l\'étranger, contactez-nous pour étudier les modalités d\'intervention.',
+  },
+]
+
 export default function Home() {
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  }
+
   return (
     <>
+      {/* FAQ JSON-LD structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
       {/* Hero */}
       <section className="bg-gradient-to-br from-navy-800 via-navy-700 to-navy-900 text-white py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,23 +71,23 @@ export default function Home() {
                 <span className="text-fire-400"> Incendie</span>
               </h1>
               <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                Prevarie accompagne les entreprises et collectivités dans la prévention
-                des risques d&apos;incendie et d&apos;explosion. Expertise terrain, méthodologie
-                rigoureuse et accompagnement personnalisé.
+                Ne laissez pas un défaut de conformité mettre en danger vos équipes
+                et votre activité. Prevarie identifie vos failles et vous guide vers
+                une sécurité incendie sans compromis.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   href="/contact"
                   className="group bg-fire-500 hover:bg-fire-600 text-white font-semibold py-4 px-8 rounded-xl transition-all inline-flex items-center justify-center gap-2 shadow-lg shadow-fire-500/25"
                 >
-                  Demander un devis gratuit
+                  Obtenir mon diagnostic gratuit
                   <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
-                  href="/services"
+                  href="/duerp/demo"
                   className="border-2 border-white/30 text-white hover:bg-white/10 font-semibold py-4 px-8 rounded-xl transition-colors inline-flex items-center justify-center gap-2"
                 >
-                  Découvrir nos services
+                  Essayer la démo DUERP
                 </Link>
               </div>
             </FadeIn>
@@ -65,6 +112,45 @@ export default function Home() {
                 </div>
               </div>
             </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust badges */}
+      <section className="py-6 bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+            <div className="flex items-center gap-3">
+              <Award className="h-8 w-8 text-fire-500" />
+              <div>
+                <div className="font-bold text-navy-700 text-sm">Certifié INSSI</div>
+                <div className="text-gray-500 text-xs">Agrément CNPP</div>
+              </div>
+            </div>
+            <div className="h-8 w-px bg-gray-200 hidden md:block" />
+            <div className="flex items-center gap-3">
+              <Clock className="h-8 w-8 text-fire-500" />
+              <div>
+                <div className="font-bold text-navy-700 text-sm">Réponse sous 48h</div>
+                <div className="text-gray-500 text-xs">Garantie contractuelle</div>
+              </div>
+            </div>
+            <div className="h-8 w-px bg-gray-200 hidden md:block" />
+            <div className="flex items-center gap-3">
+              <Shield className="h-8 w-8 text-fire-500" />
+              <div>
+                <div className="font-bold text-navy-700 text-sm">{STATS.auditsCompleted}+ audits</div>
+                <div className="text-gray-500 text-xs">0 incident client</div>
+              </div>
+            </div>
+            <div className="h-8 w-px bg-gray-200 hidden md:block" />
+            <div className="flex items-center gap-3">
+              <Zap className="h-8 w-8 text-fire-500" />
+              <div>
+                <div className="font-bold text-navy-700 text-sm">100% conformité</div>
+                <div className="text-gray-500 text-xs">Objectif chaque audit</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -132,6 +218,67 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Industry solutions */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeIn className="text-center mb-16">
+            <span className="text-fire-500 font-semibold text-sm uppercase tracking-wider">
+              Par secteur
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-navy-700 mt-3 mb-4">
+              Des solutions adaptées à votre secteur
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Chaque secteur a ses propres contraintes réglementaires. Notre expertise couvre
+              les environnements les plus exigeants.
+            </p>
+          </FadeIn>
+
+          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: HeartPulse,
+                title: 'Santé & Médico-social',
+                desc: 'ERP de type U, évacuation des personnes à mobilité réduite, commissions de sécurité.',
+                stat: '80 établissements gérés',
+              },
+              {
+                icon: School,
+                title: 'Enseignement & Collectivités',
+                desc: 'ERP de type R, exercices d\'évacuation, registres de sécurité, formation du personnel.',
+                stat: 'Protocoles éprouvés',
+              },
+              {
+                icon: Warehouse,
+                title: 'Industrie & Logistique',
+                desc: 'ICPE, ATEX, SEVESO, étude de dangers, plans d\'action incendie/explosion.',
+                stat: 'Risques complexes maîtrisés',
+              },
+              {
+                icon: Building2,
+                title: 'Tertiaire & Commerce',
+                desc: 'ERP de types M et W, conformité SSI, accompagnement ouverture et exploitation.',
+                stat: 'Conformité garantie',
+              },
+            ].map((sector) => (
+              <StaggerItem key={sector.title}>
+                <div className="bg-white rounded-2xl p-6 h-full shadow-sm hover:shadow-lg transition-shadow border border-gray-100">
+                  <div className="bg-navy-700 w-12 h-12 rounded-xl flex items-center justify-center mb-5">
+                    <sector.icon className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-navy-700 mb-2">{sector.title}</h3>
+                  <p className="text-gray-600 text-sm mb-4">{sector.desc}</p>
+                  <div className="flex items-center gap-2 text-fire-500 text-sm font-semibold">
+                    <CheckCircle className="h-4 w-4" />
+                    {sector.stat}
+                  </div>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
       {/* Credibility */}
       <section className="py-20 bg-navy-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -149,17 +296,17 @@ export default function Home() {
               {
                 icon: Award,
                 title: 'Certifié INSSI / CNPP',
-                desc: 'Agrément délivré par le Centre National de Prévention et de Protection, référence nationale en sécurité incendie.',
+                desc: 'Agrément délivré par le Centre National de Prévention et de Protection, référence nationale en sécurité incendie. Moins de 5% des consultants détiennent cette certification.',
               },
               {
                 icon: Shield,
-                title: '20+ ans d\'expérience',
-                desc: 'Expertise forgée dans des postes à responsabilité : collectivités, grande distribution, secteur médico-social.',
+                title: 'Spécialiste incendie exclusif',
+                desc: 'Contrairement aux consultants généralistes HSE, nous nous concentrons exclusivement sur la sécurité incendie et explosion. Cette spécialisation garantit une expertise de pointe.',
               },
               {
                 icon: CheckCircle,
-                title: 'Approche pragmatique',
-                desc: 'Des recommandations concrètes et actionnables, adaptées à vos réalités opérationnelles et votre budget.',
+                title: 'Résultats concrets garantis',
+                desc: 'Des recommandations actionnables avec un plan d\'action chiffré. Nos clients réduisent en moyenne de 85% leurs non-conformités dès le premier audit.',
               },
             ].map((item) => (
               <StaggerItem key={item.title}>
@@ -274,8 +421,55 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeIn className="text-center mb-16">
+            <span className="text-fire-500 font-semibold text-sm uppercase tracking-wider">
+              FAQ
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-navy-700 mt-3 mb-4">
+              Questions fréquentes
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Les réponses aux questions les plus courantes sur nos services.
+            </p>
+          </FadeIn>
+
+          <div className="max-w-3xl mx-auto">
+            <StaggerContainer className="space-y-4">
+              {faqItems.map((item) => (
+                <StaggerItem key={item.question}>
+                  <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                    <h3 className="flex items-start gap-3 text-lg font-bold text-navy-700 mb-3">
+                      <HelpCircle className="h-6 w-6 text-fire-500 shrink-0 mt-0.5" />
+                      {item.question}
+                    </h3>
+                    <p className="text-gray-600 pl-9">{item.answer}</p>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+
+            <FadeIn className="text-center mt-10">
+              <p className="text-gray-600 mb-4">Vous avez d&apos;autres questions ?</p>
+              <Link
+                href="/contact"
+                className="bg-fire-500 hover:bg-fire-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-flex items-center gap-2"
+              >
+                Posez votre question
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
-      <CTASection />
+      <CTASection
+        title="Obtenez votre diagnostic sécurité gratuit"
+        description="Échangez avec notre expert certifié CNPP pour identifier vos failles et obtenir un plan d'action concret. Réponse garantie sous 48h."
+      />
     </>
   )
 }

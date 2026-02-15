@@ -345,21 +345,56 @@ export default function ReglementationERP() {
         </div>
       </section>
 
+      {/* What could go wrong */}
+      <section className="py-16 bg-red-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3 mb-8">
+            <AlertTriangle className="h-8 w-8 text-red-500" />
+            <h2 className="section-title mb-0">Ce que vous risquez en cas de non-conformité</h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white rounded-xl p-6 border-l-4 border-red-500">
+              <h3 className="font-bold text-navy-700 mb-2">Fermeture administrative</h3>
+              <p className="text-gray-600 text-sm">
+                Un avis défavorable de la commission de sécurité peut entraîner
+                la fermeture immédiate de votre établissement par arrêté du maire.
+              </p>
+            </div>
+            <div className="bg-white rounded-xl p-6 border-l-4 border-orange-500">
+              <h3 className="font-bold text-navy-700 mb-2">Responsabilité pénale</h3>
+              <p className="text-gray-600 text-sm">
+                En cas d&apos;incendie, l&apos;exploitant engage sa responsabilité pénale personnelle.
+                Les peines peuvent aller jusqu&apos;à 5 ans d&apos;emprisonnement et 75 000 € d&apos;amende.
+              </p>
+            </div>
+            <div className="bg-white rounded-xl p-6 border-l-4 border-yellow-500">
+              <h3 className="font-bold text-navy-700 mb-2">Défaut d&apos;assurance</h3>
+              <p className="text-gray-600 text-sm">
+                Une non-conformité avérée peut entraîner l&apos;annulation de votre contrat
+                d&apos;assurance et le refus d&apos;indemnisation en cas de sinistre.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-20 bg-blue-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Besoin d&apos;un accompagnement pour votre ERP ?
+            Ne risquez pas un avis défavorable
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Audit de conformité, préparation aux commissions de sécurité, mise à jour du registre...
+            Nos experts ont accompagné des centaines d&apos;ERP vers la conformité. Audit, préparation
+            aux commissions de sécurité, mise à jour du registre — nous vous guidons à chaque étape.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/devis"
+              href="/contact"
               className="bg-white text-blue-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-colors inline-flex items-center justify-center gap-2"
             >
-              Demander un devis
+              Obtenir un diagnostic gratuit
               <ArrowRight className="h-5 w-5" />
             </Link>
             <Link

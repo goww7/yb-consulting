@@ -157,19 +157,29 @@ export default function Services() {
                 href="/contact"
                 className="bg-fire-500 hover:bg-fire-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-flex items-center gap-2"
               >
-                Demander un devis
+                Planifier un diagnostic
                 <ArrowRight className="h-5 w-5" />
               </Link>
             </FadeIn>
 
             <FadeIn>
-              <div className="bg-fire-500 rounded-xl p-8 text-white">
-                <div className="text-5xl font-bold mb-2">100%</div>
-                <div className="text-white/80 mb-4">Objectif conformité</div>
-                <p className="text-white/90">
-                  Notre approche vise la conformité totale de vos installations
-                  aux réglementations en vigueur.
-                </p>
+              <div className="space-y-4">
+                <div className="bg-fire-500 rounded-xl p-8 text-white">
+                  <div className="text-5xl font-bold mb-2">100%</div>
+                  <div className="text-white/80 mb-4">Objectif conformité</div>
+                  <p className="text-white/90">
+                    Notre approche vise la conformité totale de vos installations
+                    aux réglementations en vigueur.
+                  </p>
+                </div>
+                <div className="bg-green-50 border border-green-200 rounded-xl p-6">
+                  <div className="text-sm font-semibold text-green-800 mb-1">Cas client type</div>
+                  <p className="text-green-700 text-sm">
+                    Un groupement hospitalier de 12 sites a réduit ses non-conformités
+                    de 47 à 3 en 6 mois grâce à notre plan d&apos;action priorisé,
+                    passant d&apos;un avis défavorable à un avis favorable de la commission.
+                  </p>
+                </div>
               </div>
             </FadeIn>
           </div>
@@ -246,19 +256,29 @@ export default function Services() {
                 href="/contact"
                 className="bg-fire-500 hover:bg-fire-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-flex items-center gap-2"
               >
-                Demander un devis
+                Demander un audit de vulnérabilité
                 <ArrowRight className="h-5 w-5" />
               </Link>
             </FadeIn>
 
             <FadeIn>
-              <div className="bg-navy-700 rounded-xl p-8 text-white">
-                <div className="text-4xl font-bold mb-2">Expert</div>
-                <div className="text-white/80 mb-4">Ingénieur certifié INSSI</div>
-                <p className="text-white/90">
-                  Notre expertise technique permet une analyse approfondie
-                  de la vulnérabilité de vos installations.
-                </p>
+              <div className="space-y-4">
+                <div className="bg-navy-700 rounded-xl p-8 text-white">
+                  <div className="text-4xl font-bold mb-2">Expert</div>
+                  <div className="text-white/80 mb-4">Ingénieur certifié INSSI</div>
+                  <p className="text-white/90">
+                    Notre expertise technique permet une analyse approfondie
+                    de la vulnérabilité de vos installations.
+                  </p>
+                </div>
+                <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
+                  <div className="text-sm font-semibold text-blue-800 mb-1">Cas client type</div>
+                  <p className="text-blue-700 text-sm">
+                    Un site industriel ICPE a identifié 23 vulnérabilités critiques
+                    lors de notre audit, dont un risque d&apos;effet domino non détecté.
+                    Plan d&apos;action mis en œuvre en 3 mois, validé par la DREAL.
+                  </p>
+                </div>
               </div>
             </FadeIn>
           </div>
@@ -641,7 +661,7 @@ export default function Services() {
                 href="/contact"
                 className="bg-fire-500 hover:bg-fire-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-flex items-center gap-2"
               >
-                Demander un devis
+                Organiser une formation
                 <ArrowRight className="h-5 w-5" />
               </Link>
             </FadeIn>
@@ -683,8 +703,49 @@ export default function Services() {
         </div>
       </section>
 
+      {/* Timeline */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeIn className="text-center mb-16">
+            <span className="text-fire-500 font-semibold text-sm uppercase tracking-wider">
+              Déroulement type
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-navy-700 mt-3 mb-4">
+              De la prise de contact au rapport final
+            </h2>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              { step: 'J0', title: 'Premier échange', desc: 'Compréhension de votre contexte, périmètre et objectifs. Devis en 48h.' },
+              { step: 'S1', title: 'Visite sur site', desc: 'Diagnostic terrain, relevé des installations, entretiens avec vos équipes.' },
+              { step: 'S2-S3', title: 'Analyse & rapport', desc: 'Rédaction du rapport, matrice de risques, plan d\'action chiffré.' },
+              { step: 'S4', title: 'Restitution & suivi', desc: 'Présentation des résultats, priorisation des actions, suivi de 3 mois inclus.' },
+            ].map((item, i) => (
+              <FadeIn key={item.step}>
+                <div className="text-center">
+                  <div className="relative mx-auto mb-4">
+                    <div className="bg-fire-500 text-white w-16 h-16 rounded-full flex items-center justify-center font-bold text-lg mx-auto">
+                      {item.step}
+                    </div>
+                    {i < 3 && (
+                      <div className="hidden md:block absolute top-1/2 left-full w-full h-0.5 bg-fire-200 -translate-y-1/2" />
+                    )}
+                  </div>
+                  <h3 className="font-bold text-navy-700 mb-2">{item.title}</h3>
+                  <p className="text-gray-600 text-sm">{item.desc}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
-      <CTASection />
+      <CTASection
+        title="Identifiez vos failles avant qu'il ne soit trop tard"
+        description="Nos experts certifiés CNPP ont accompagné plus de 500 audits. Obtenez votre diagnostic gratuit avec plan d'action concret sous 48h."
+      />
     </>
   )
 }

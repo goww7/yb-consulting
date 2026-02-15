@@ -1329,6 +1329,146 @@ export default function DuerpDemo() {
       </section>
 
       {toast && <Toast message={toast} onClose={() => setToast(null)} />}
+
+      {/* Upgrade comparison & next steps */}
+      <section className="py-16 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-navy-700 mb-3">
+              Vous aimez la démo ? Passez à la version complète
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              La démo vous montre les bases. Les versions Pro vous permettent de couvrir
+              l&apos;intégralité de vos risques et de générer un DUERP conforme.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6 mb-12">
+            <div className="bg-gray-50 rounded-2xl p-6 border-2 border-gray-200">
+              <div className="text-sm font-semibold text-gray-500 mb-2">Démo gratuite</div>
+              <div className="text-2xl font-bold text-navy-700 mb-4">0 €</div>
+              <ul className="space-y-2 text-sm text-gray-600">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                  3 unités de travail max
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                  30 catégories de risques
+                </li>
+                <li className="flex items-start gap-2">
+                  <X className="h-4 w-4 text-gray-300 mt-0.5 shrink-0" />
+                  Pas de sauvegarde
+                </li>
+                <li className="flex items-start gap-2">
+                  <X className="h-4 w-4 text-gray-300 mt-0.5 shrink-0" />
+                  Pas d&apos;export PDF
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white rounded-2xl p-6 border-2 border-gray-200 shadow-sm">
+              <div className="text-sm font-semibold text-gray-500 mb-2">Essentiel</div>
+              <div className="text-2xl font-bold text-navy-700 mb-1">299 €</div>
+              <div className="text-xs text-gray-500 mb-4">HT - paiement unique</div>
+              <ul className="space-y-2 text-sm text-gray-600">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                  3 unités de travail
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                  Évaluations illimitées
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                  Export PDF conforme
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                  Plans d&apos;action
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white rounded-2xl p-6 border-2 border-fire-500 shadow-xl relative">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-fire-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                Recommandé
+              </div>
+              <div className="text-sm font-semibold text-fire-500 mb-2">Professionnel</div>
+              <div className="text-2xl font-bold text-navy-700 mb-1">599 €</div>
+              <div className="text-xs text-gray-500 mb-4">HT - paiement unique</div>
+              <ul className="space-y-2 text-sm text-gray-600">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                  10 unités de travail
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                  Matrice visuelle
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                  Suivi avancé plans d&apos;action
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                  Support email
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white rounded-2xl p-6 border-2 border-gray-200 shadow-sm">
+              <div className="text-sm font-semibold text-gray-500 mb-2">Entreprise</div>
+              <div className="text-2xl font-bold text-navy-700 mb-1">1 299 €</div>
+              <div className="text-xs text-gray-500 mb-4">HT / an</div>
+              <ul className="space-y-2 text-sm text-gray-600">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                  Organisations multiples
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                  Unités illimitées
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                  Rapports marque blanche
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                  Support prioritaire
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="bg-navy-700 rounded-2xl p-8 text-white text-center">
+            <div className="text-lg font-semibold mb-2">
+              Un consultant facture entre 2 000 et 5 000 € pour un DUERP
+            </div>
+            <p className="text-gray-300 mb-6 max-w-xl mx-auto">
+              Notre plateforme vous offre la même qualité pour une fraction du prix,
+              avec des mises à jour continues et un accompagnement intégré.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/contact"
+                className="bg-fire-500 hover:bg-fire-600 text-white font-semibold py-3 px-8 rounded-xl transition-colors inline-flex items-center justify-center gap-2"
+              >
+                Passer à la version complète
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+              <Link
+                href="/services#duerp"
+                className="border-2 border-white/30 text-white hover:bg-white/10 font-semibold py-3 px-8 rounded-xl transition-colors inline-flex items-center justify-center gap-2"
+              >
+                Voir le détail des offres
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   )
 }

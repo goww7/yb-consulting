@@ -10,8 +10,8 @@ type CTASectionProps = {
 
 export default function CTASection({
   variant = 'default',
-  title = 'Prêt à sécuriser vos installations ?',
-  description = 'Échangez gratuitement avec notre expert pour évaluer vos besoins en sécurité incendie.',
+  title = 'Obtenez votre diagnostic sécurité gratuit',
+  description = 'Échangez avec notre expert certifié CNPP pour identifier vos failles et obtenir un plan d\'action concret. Réponse garantie sous 48h.',
 }: CTASectionProps) {
   if (variant === 'compact') {
     return (
@@ -46,7 +46,7 @@ export default function CTASection({
                 href="/contact"
                 className="group bg-white text-fire-600 hover:bg-gray-100 font-semibold py-4 px-8 rounded-xl transition-colors inline-flex items-center justify-center gap-2 shadow-lg"
               >
-                Demander un devis gratuit
+                Obtenir mon diagnostic gratuit
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>

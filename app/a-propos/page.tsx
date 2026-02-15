@@ -103,14 +103,21 @@ export default function APropos() {
                   Une expertise de terrain incomparable
                 </h2>
                 <p className="text-gray-600 text-lg mb-6">
-                  Fort de plus de <strong>20 ans d&apos;expérience</strong> dans le domaine de la sécurité
-                  incendie et de la prévention des risques, le fondateur de Prevarie a développé
-                  une expertise unique à travers des postes à responsabilité dans des secteurs variés.
+                  Après avoir constaté les conséquences dramatiques que peut engendrer un défaut
+                  de prévention incendie — fermetures d&apos;établissements, pertes humaines évitables,
+                  destructions irréversibles — le fondateur de Prevarie a consacré plus de
+                  <strong> 20 ans</strong> à un seul objectif : que personne n&apos;ait à subir ce qui peut être prévenu.
+                </p>
+                <p className="text-gray-600 text-lg mb-6">
+                  Fort de postes à responsabilité dans des secteurs variés — collectivités territoriales,
+                  grande distribution, secteur médico-social avec la gestion de <strong>80 établissements</strong> —
+                  il a développé une expertise terrain rare, confrontée aux réalités opérationnelles
+                  et budgétaires de chaque contexte.
                 </p>
                 <p className="text-gray-600 text-lg mb-8">
-                  Cette expérience terrain, acquise notamment dans la gestion de <strong>80 établissements</strong> et
-                  la coordination sécurité de grands groupes, permet aujourd&apos;hui d&apos;offrir un accompagnement
-                  pragmatique et adapté aux réalités opérationnelles de chaque client.
+                  C&apos;est cette expérience concrète qui fait la différence de Prevarie : pas de solutions
+                  génériques, mais un accompagnement pragmatique et adapté, ancré dans la réalité
+                  de votre métier.
                 </p>
               </FadeIn>
 
@@ -179,6 +186,72 @@ export default function APropos() {
               </FadeIn>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Projets notables */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeIn className="text-center mb-12">
+            <span className="text-fire-500 font-semibold text-sm uppercase tracking-wider">
+              Résultats concrets
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-navy-700 mt-3 mb-4">
+              Projets représentatifs
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Quelques exemples concrets d&apos;interventions menées avec succès.
+            </p>
+          </FadeIn>
+
+          <StaggerContainer className="grid md:grid-cols-2 gap-8">
+            {[
+              {
+                title: 'Remise en conformité multi-sites médico-social',
+                context: '80 établissements répartis sur le territoire national, historique de non-conformités récurrentes.',
+                action: 'Audit systématique de chaque site, plan d\'action global priorisé, accompagnement à la mise en œuvre sur 18 mois.',
+                result: 'Passage de 60% à 98% de conformité globale. Avis favorable obtenu pour l\'ensemble des commissions de sécurité.',
+              },
+              {
+                title: 'Audit de vulnérabilité site industriel ICPE',
+                context: 'Site classé SEVESO seuil haut, inspection DREAL imminente, nombreuses zones de stockage à risque.',
+                action: 'Cartographie complète des vulnérabilités, étude des scénarios d\'effet domino, dimensionnement des protections.',
+                result: '23 vulnérabilités critiques identifiées et corrigées en 3 mois. Inspection DREAL validée sans mise en demeure.',
+              },
+              {
+                title: 'Formation évacuation grande distribution',
+                context: 'Réseau de 15 magasins, personnel non formé, aucun exercice d\'évacuation réalisé depuis 3 ans.',
+                action: 'Formation manipulation extincteurs + exercices d\'évacuation pour 450 salariés, mise en place de protocoles.',
+                result: 'Temps d\'évacuation réduit de 12 à 4 minutes en moyenne. 100% du personnel formé et certifié.',
+              },
+              {
+                title: 'Accompagnement DUERP collectivité territoriale',
+                context: 'Obligation de mise à jour du DUERP pour 25 services communaux avec des profils de risques très différents.',
+                action: 'Déploiement de notre plateforme DUERP digitale, formation des référents, évaluation des 30 catégories de risques.',
+                result: 'DUERP conforme livré en 6 semaines au lieu des 6 mois estimés. Économie de 70% par rapport à un consultant traditionnel.',
+              },
+            ].map((project) => (
+              <StaggerItem key={project.title}>
+                <div className="bg-gray-50 rounded-2xl p-8 h-full border border-gray-100">
+                  <h3 className="text-lg font-bold text-navy-700 mb-4">{project.title}</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Contexte</div>
+                      <p className="text-gray-600 text-sm">{project.context}</p>
+                    </div>
+                    <div>
+                      <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Intervention</div>
+                      <p className="text-gray-600 text-sm">{project.action}</p>
+                    </div>
+                    <div>
+                      <div className="text-xs font-semibold text-fire-500 uppercase tracking-wider mb-1">Résultat</div>
+                      <p className="text-gray-700 text-sm font-medium">{project.result}</p>
+                    </div>
+                  </div>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
         </div>
       </section>
 
@@ -328,16 +401,16 @@ export default function APropos() {
       <section className="py-16 bg-navy-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Discutons de votre projet
+            Échangeons sur vos enjeux sécurité
           </h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Bénéficiez de plus de 20 ans d&apos;expérience pour sécuriser vos installations.
+            Premier diagnostic gratuit. Réponse garantie sous 48h par un expert certifié CNPP.
           </p>
           <Link
             href="/contact"
             className="bg-fire-500 hover:bg-fire-600 text-white font-semibold py-3 px-8 rounded-lg transition-colors inline-flex items-center gap-2"
           >
-            Nous contacter
+            Obtenir mon diagnostic gratuit
             <ArrowRight className="h-5 w-5" />
           </Link>
         </div>

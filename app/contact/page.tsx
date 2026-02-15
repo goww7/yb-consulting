@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { contactSchema, ContactFormData, devisSchema, DevisFormData } from '@/lib/validations'
-import { Mail, MapPin, Send, CheckCircle, Loader2, FileText, MessageSquare, Building, User, Clipboard } from 'lucide-react'
+import { Mail, MapPin, Send, CheckCircle, Loader2, FileText, MessageSquare, Building, User, Clipboard, ArrowRight, Clock, Shield, Phone } from 'lucide-react'
 
 const sujets = [
   { value: '', label: 'Sélectionnez un sujet' },
@@ -96,11 +96,26 @@ export default function Contact() {
       <section className="bg-gradient-to-br from-navy-700 to-navy-900 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Parlons de votre projet</h1>
-            <p className="text-xl text-gray-300">
-              Demandez un devis personnalisé ou posez-nous une question.
-              Notre expert vous répondra sous 48h.
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              Obtenez votre diagnostic sécurité gratuit
+            </h1>
+            <p className="text-xl text-gray-300 mb-8">
+              Premier échange offert avec notre expert certifié CNPP pour identifier
+              vos failles et vous proposer un plan d&apos;action concret. Réponse garantie sous 48h.
             </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { label: 'Diagnostic', value: 'Gratuit' },
+                { label: 'Réponse', value: '< 48h' },
+                { label: 'Expert', value: 'Certifié CNPP' },
+                { label: 'Devis', value: 'Sur mesure' },
+              ].map((item) => (
+                <div key={item.label} className="bg-white/10 rounded-xl p-3 text-center">
+                  <div className="text-lg font-bold">{item.value}</div>
+                  <div className="text-gray-400 text-xs">{item.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -156,11 +171,32 @@ export default function Contact() {
               </div>
 
               <div className="mt-6 p-6 bg-fire-500 rounded-xl text-white">
-                <h3 className="font-semibold mb-2">Réponse garantie</h3>
+                <h3 className="font-semibold mb-2">Réponse garantie sous 48h</h3>
                 <p className="text-white/90 text-sm">
                   Nous nous engageons à répondre à toutes les demandes sous 48h ouvrées.
                   Pour les demandes urgentes, mentionnez-le dans votre message.
                 </p>
+              </div>
+
+              {/* What to expect */}
+              <div className="mt-6 p-6 bg-gray-50 rounded-xl">
+                <h3 className="font-semibold text-navy-700 mb-4">Ce qui se passe ensuite</h3>
+                <div className="space-y-4">
+                  {[
+                    { icon: Mail, text: 'Confirmation de réception par email' },
+                    { icon: Phone, text: 'Appel de cadrage sous 48h' },
+                    { icon: FileText, text: 'Proposition détaillée personnalisée' },
+                    { icon: Shield, text: 'Démarrage de la mission' },
+                  ].map((step, i) => (
+                    <div key={i} className="flex items-center gap-3">
+                      <div className="bg-fire-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0">
+                        {i + 1}
+                      </div>
+                      <step.icon className="h-4 w-4 text-gray-400 shrink-0" />
+                      <span className="text-sm text-gray-600">{step.text}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
