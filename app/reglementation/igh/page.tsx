@@ -200,20 +200,57 @@ export default function ReglementationIGH() {
         </div>
       </section>
 
+      {/* What could go wrong */}
+      <section className="py-16 bg-red-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3 mb-8">
+            <AlertTriangle className="h-8 w-8 text-red-500" />
+            <h2 className="section-title mb-0">Enjeux spécifiques aux IGH</h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white rounded-xl p-6 border-l-4 border-red-500">
+              <h3 className="font-bold text-navy-700 mb-2">Évacuation complexe</h3>
+              <p className="text-gray-600 text-sm">
+                Un défaut de compartimentage ou de désenfumage dans un IGH peut rendre
+                l&apos;évacuation impossible. Les conséquences d&apos;un incendie en hauteur
+                sont démultipliées par rapport à un bâtiment classique.
+              </p>
+            </div>
+            <div className="bg-white rounded-xl p-6 border-l-4 border-orange-500">
+              <h3 className="font-bold text-navy-700 mb-2">Coûts de mise en conformité</h3>
+              <p className="text-gray-600 text-sm">
+                Reporter les travaux de conformité dans un IGH entraîne souvent
+                une multiplication des coûts. Un audit précoce permet d&apos;anticiper
+                et de lisser les investissements sur plusieurs exercices.
+              </p>
+            </div>
+            <div className="bg-white rounded-xl p-6 border-l-4 border-yellow-500">
+              <h3 className="font-bold text-navy-700 mb-2">Service de sécurité défaillant</h3>
+              <p className="text-gray-600 text-sm">
+                Un service SSIAP sous-dimensionné ou insuffisamment formé est l&apos;une
+                des non-conformités les plus fréquentes constatées lors de nos audits IGH.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-20 bg-purple-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Expertise IGH
+            Sécurisez votre IGH avec un expert certifié
           </h2>
           <p className="text-xl text-purple-100 mb-8 max-w-2xl mx-auto">
-            Audit, conseil et accompagnement pour vos immeubles de grande hauteur.
+            Audit de compartimentage, vérification des moyens de secours, accompagnement SSIAP —
+            notre expertise IGH est à votre disposition.
           </p>
           <Link
-            href="/devis"
+            href="/contact"
             className="bg-white text-purple-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-colors inline-flex items-center justify-center gap-2"
           >
-            Demander un devis
+            Planifier un audit IGH
             <ArrowRight className="h-5 w-5" />
           </Link>
         </div>

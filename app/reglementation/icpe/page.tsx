@@ -198,21 +198,57 @@ export default function ReglementationICPE() {
         </div>
       </section>
 
+      {/* What could go wrong */}
+      <section className="py-16 bg-red-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3 mb-8">
+            <AlertTriangle className="h-8 w-8 text-red-500" />
+            <h2 className="section-title mb-0">Conséquences d&apos;un défaut de conformité ICPE</h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white rounded-xl p-6 border-l-4 border-red-500">
+              <h3 className="font-bold text-navy-700 mb-2">Accident industriel majeur</h3>
+              <p className="text-gray-600 text-sm">
+                Un stockage non conforme de matières dangereuses peut déclencher
+                un incendie ou une explosion. Les conséquences humaines, environnementales
+                et financières sont souvent irréversibles.
+              </p>
+            </div>
+            <div className="bg-white rounded-xl p-6 border-l-4 border-orange-500">
+              <h3 className="font-bold text-navy-700 mb-2">Sanctions administratives lourdes</h3>
+              <p className="text-gray-600 text-sm">
+                Le préfet peut ordonner la suspension d&apos;activité, imposer des astreintes
+                journalières de 1 500 € et exiger une remise en état aux frais de l&apos;exploitant.
+              </p>
+            </div>
+            <div className="bg-white rounded-xl p-6 border-l-4 border-yellow-500">
+              <h3 className="font-bold text-navy-700 mb-2">Mise en demeure DREAL</h3>
+              <p className="text-gray-600 text-sm">
+                Les inspections DREAL peuvent déboucher sur une mise en demeure
+                avec délai de mise en conformité sous peine de fermeture définitive.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-20 bg-orange-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Expertise ICPE et SEVESO
+            Anticipez votre prochaine inspection DREAL
           </h2>
           <p className="text-xl text-orange-100 mb-8 max-w-2xl mx-auto">
-            Accompagnement réglementaire, études de dangers, POI...
+            Audit de conformité ICPE, préparation SEVESO, études de dangers —
+            sécurisez votre exploitation avant qu&apos;il ne soit trop tard.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/devis"
+              href="/contact"
               className="bg-white text-orange-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-colors inline-flex items-center justify-center gap-2"
             >
-              Demander un devis
+              Demander un audit ICPE
               <ArrowRight className="h-5 w-5" />
             </Link>
             <Link

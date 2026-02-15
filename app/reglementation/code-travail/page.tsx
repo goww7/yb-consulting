@@ -239,29 +239,66 @@ export default function ReglementationCodeTravail() {
         </div>
       </section>
 
+      {/* What could go wrong */}
+      <section className="py-16 bg-red-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3 mb-8">
+            <AlertTriangle className="h-8 w-8 text-red-500" />
+            <h2 className="section-title mb-0">Ce que vous risquez sans formation incendie</h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white rounded-xl p-6 border-l-4 border-red-500">
+              <h3 className="font-bold text-navy-700 mb-2">Panique lors d&apos;un sinistre</h3>
+              <p className="text-gray-600 text-sm">
+                Sans exercice d&apos;évacuation régulier, vos salariés ne connaissent pas
+                les itinéraires de secours. Une évacuation désorganisée peut provoquer
+                des bousculades et aggraver le bilan humain.
+              </p>
+            </div>
+            <div className="bg-white rounded-xl p-6 border-l-4 border-orange-500">
+              <h3 className="font-bold text-navy-700 mb-2">Faute inexcusable de l&apos;employeur</h3>
+              <p className="text-gray-600 text-sm">
+                L&apos;absence de formation incendie constitue un manquement à l&apos;obligation
+                de sécurité. En cas d&apos;accident, la faute inexcusable peut être reconnue
+                avec majoration de l&apos;indemnisation.
+              </p>
+            </div>
+            <div className="bg-white rounded-xl p-6 border-l-4 border-yellow-500">
+              <h3 className="font-bold text-navy-700 mb-2">Amende de l&apos;inspection du travail</h3>
+              <p className="text-gray-600 text-sm">
+                L&apos;inspection du travail peut verbaliser l&apos;absence de consignes affichées,
+                d&apos;extincteurs vérifiés ou d&apos;exercices d&apos;évacuation.
+                Amende jusqu&apos;à 10 000 € par infraction constatée.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-20 bg-green-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Formations et accompagnement
+            Mettez vos équipes en conformité dès maintenant
           </h2>
           <p className="text-xl text-green-100 mb-8 max-w-2xl mx-auto">
             Formation manipulation extincteurs, exercices d&apos;évacuation,
-            mise en conformité de vos locaux...
+            mise en conformité de vos locaux — nous formons vos équipes sur site.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/devis"
+              href="/contact"
               className="bg-white text-green-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-colors inline-flex items-center justify-center gap-2"
             >
-              Demander un devis
+              Planifier une formation
               <ArrowRight className="h-5 w-5" />
             </Link>
             <Link
               href="/boutique"
               className="border-2 border-white text-white hover:bg-white hover:text-green-600 font-semibold py-3 px-8 rounded-lg transition-colors"
             >
-              Nos formations
+              Nos formations en ligne
             </Link>
           </div>
         </div>

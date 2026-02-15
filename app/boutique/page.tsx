@@ -173,16 +173,95 @@ export default function Boutique() {
         </div>
       </section>
 
-      {/* Payment notice banner */}
-      <section className="py-4 bg-amber-50 border-b border-amber-200">
+      {/* Trust bar */}
+      <section className="py-4 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3 justify-center text-amber-800">
-            <Info className="h-5 w-5 shrink-0" />
-            <p className="text-sm font-medium">
-              Le paiement en ligne sera bientôt disponible.
-              Pour commander, <Link href="/contact" className="underline font-bold hover:text-amber-900">contactez-nous</Link>.
-            </p>
+          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 text-sm">
+            <div className="flex items-center gap-2 text-gray-600">
+              <CheckCircle className="h-4 w-4 text-green-500" />
+              <span>Documents conformes 2025</span>
+            </div>
+            <div className="flex items-center gap-2 text-gray-600">
+              <CheckCircle className="h-4 w-4 text-green-500" />
+              <span>Rédigés par expert CNPP</span>
+            </div>
+            <div className="flex items-center gap-2 text-gray-600">
+              <CheckCircle className="h-4 w-4 text-green-500" />
+              <span>Formats modifiables</span>
+            </div>
+            <div className="flex items-center gap-2 text-gray-600">
+              <Info className="h-4 w-4 text-amber-500" />
+              <span>Commande par <Link href="/contact" className="underline font-semibold text-fire-500 hover:text-fire-600">contact direct</Link></span>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* Bundles */}
+      <section className="py-12 bg-gradient-to-b from-fire-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeIn className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-navy-700">Packs recommandés</h2>
+            <p className="text-gray-600 text-sm mt-2">Économisez avec nos offres groupées</p>
+          </FadeIn>
+
+          <StaggerContainer className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                name: 'Pack ERP Starter',
+                products: ['Guide complet ERP', 'Modèle registre de sécurité', 'Check-list commission'],
+                individualPrice: 97,
+                bundlePrice: 79,
+                color: 'border-blue-500',
+                badge: 'Économisez 18€',
+              },
+              {
+                name: 'Pack Conformité Complète',
+                products: ['Guide ERP', 'Guide ICPE', 'Kit plan d\'évacuation', 'Check-list commission'],
+                individualPrice: 166,
+                bundlePrice: 129,
+                color: 'border-fire-500',
+                badge: 'Le + populaire',
+              },
+              {
+                name: 'Pack Formation + Documents',
+                products: ['Formation ERP fondamentaux', 'Guide complet ERP', 'Modèle registre sécurité'],
+                individualPrice: 277,
+                bundlePrice: 229,
+                color: 'border-purple-500',
+                badge: 'Économisez 48€',
+              },
+            ].map((bundle) => (
+              <StaggerItem key={bundle.name}>
+                <div className={`bg-white rounded-2xl p-6 shadow-sm border-t-4 ${bundle.color} hover:shadow-lg transition-shadow`}>
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="font-bold text-navy-700">{bundle.name}</h3>
+                    <span className="bg-fire-50 text-fire-600 text-xs font-bold px-3 py-1 rounded-full">{bundle.badge}</span>
+                  </div>
+                  <ul className="space-y-2 mb-5">
+                    {bundle.products.map((p) => (
+                      <li key={p} className="flex items-center gap-2 text-sm text-gray-600">
+                        <CheckCircle className="h-4 w-4 text-green-500 shrink-0" />
+                        {p}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex items-end gap-3 mb-4">
+                    <span className="text-2xl font-bold text-navy-700">{bundle.bundlePrice}€</span>
+                    <span className="text-gray-400 line-through text-sm mb-1">{bundle.individualPrice}€</span>
+                    <span className="text-sm text-gray-500 mb-1">HT</span>
+                  </div>
+                  <Link
+                    href="/contact"
+                    className="w-full bg-fire-500 hover:bg-fire-600 text-white font-semibold py-2.5 px-5 rounded-xl transition-colors text-sm flex items-center justify-center gap-2"
+                  >
+                    <ShoppingCart className="h-4 w-4" />
+                    Commander ce pack
+                  </Link>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
         </div>
       </section>
 
@@ -343,7 +422,7 @@ export default function Boutique() {
       {/* CTA */}
       <CTASection
         title="Besoin d'un document sur mesure ?"
-        description="Nous pouvons créer des documents personnalisés adaptés à votre établissement et vos besoins spécifiques."
+        description="Nous créons des documents personnalisés pour votre établissement : registres, consignes, protocoles. Devis gratuit sous 48h."
       />
     </>
   )
